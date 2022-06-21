@@ -6,6 +6,7 @@ from act.model.tree import Node
 from act.model.path import Path
 from act.model.resolver import Resolver
 from act.model.target import Target
+from act.model.act import Act
 
 
 class Runner:
@@ -22,4 +23,5 @@ class Runner:
     def run(self):
         targets = self.resolve()
         for target in targets:
-            print(target.json())
+            act = Act(target, self.args)
+            act.act()
