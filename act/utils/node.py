@@ -9,6 +9,7 @@ from act.model.target import Target
 
 def get_target_configuration(node: Node, target_name: str) -> Target:
     target = Target(target_name)
+    target.push({'target': {'name': target_name}})
     target.push(get_node_configuration(node).data)
     target.push(node.configuration.get_target(target_name).data)
     return target

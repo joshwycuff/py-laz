@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "act"
-version = "0.0.0"
-description = ""
+version = "0.0.1a0"
+description = "CLI tool to configure and run parameterized actions against targets."
 authors = ["Josh Wycuff <Josh.Wycuff@gmail.com>"]
 readme = "README.md"
 packages = [{include = "act"}]
@@ -9,6 +9,7 @@ packages = [{include = "act"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 PyYAML = "^6.0"
+Jinja2 = "^3.1.2"
 
 [build-system]
 requires = ["poetry-core"]
