@@ -1,0 +1,4 @@
+site_name: Laz
+site_url: https://joshwycuff.github.io/py-laz
+theme:
+  name: material
