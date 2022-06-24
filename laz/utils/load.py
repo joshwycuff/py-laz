@@ -22,19 +22,19 @@ def _find_rootpath(dirpath: str) -> str:
     parts = dirpath.split(os.path.sep)
     for i in range(len(parts), 0, -1):
         dirpath = os.path.join(os.path.sep, *parts[:i])
-        filepath = os.path.join(dirpath, 'act.yml')
+        filepath = os.path.join(dirpath, 'laz.yml')
         if os.path.isfile(filepath):
             rootpath = dirpath
     if rootpath is None:
-        raise LazRuntimeError('Could not find root act.yml')
-    log.debug(f'Root act.yml found: {rootpath}')
+        raise LazRuntimeError('Could not find root laz.yml')
+    log.debug(f'Root laz.yml found: {rootpath}')
     return rootpath
 
 
 def _build_tree(dirpath: str) -> Opt[Union[Node, List[Node]]]:
-    filepath = os.path.join(dirpath, 'act.yml')
+    filepath = os.path.join(dirpath, 'laz.yml')
     if os.path.isfile(filepath):
-        log.debug(f'act.yml found: {filepath}')
+        log.debug(f'laz.yml found: {filepath}')
         node = Node(Configuration.load(filepath))
         children = compact(flatten([_build_tree(d) for d in _listdirs(dirpath)]))
         node.add_children(children)
