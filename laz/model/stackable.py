@@ -3,8 +3,8 @@ from __future__ import annotations
 from typing import List
 
 # internal
-from act.utils.types import DictData
-from act.utils.merge import merge
+from laz.utils.types import DictData
+from laz.utils.merge import merge
 
 
 class Stackable:

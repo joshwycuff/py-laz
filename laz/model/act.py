@@ -4,10 +4,10 @@ import subprocess
 from typing import List
 
 # internal
-from act.utils.contexts import in_dir
-from act.model.action import Action
-from act.model.target import Target
-from act.utils.templates import expand
+from laz.utils.contexts import in_dir
+from laz.model.action import Action
+from laz.model.target import Target
+from laz.utils.templates import expand
 
 
 class Act:

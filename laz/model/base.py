@@ -5,9 +5,9 @@ import yaml
 from yaml.loader import SafeLoader
 
 # internal
-from act.utils.types import Data
-from act.model.serializable import Serializable
-from act.model.stackable import Stackable
+from laz.utils.types import Data
+from laz.model.serializable import Serializable
+from laz.model.stackable import Stackable
 
 
 class BaseObject(Serializable, Stackable):

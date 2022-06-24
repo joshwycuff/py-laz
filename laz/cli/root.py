@@ -4,22 +4,22 @@ import sys
 from typing import List, Tuple
 
 # internal
-from act.utils.errors import ActRuntimeError
-from act.utils.load import load
-from act.utils.logging import get_logger
-from act.model.runner import Runner
+from laz.utils.errors import LazRuntimeError
+from laz.utils.load import load
+from laz.utils.logging import get_logger
+from laz.model.runner import Runner
 
 
 def root():
-    cli_args, act_args = _split_args()
-    if len(act_args) == 0:
-        raise ActRuntimeError('No path provided')
-    elif len(act_args) == 1:
-        raise ActRuntimeError('No arguments provided')
+    cli_args, laz_args = _split_args()
+    if len(laz_args) == 0:
+        raise LazRuntimeError('No path provided')
+    elif len(laz_args) == 1:
+        raise LazRuntimeError('No arguments provided')
     cli_args = parser.parse_args(cli_args)
     get_logger(verbosity=cli_args.verbose)
     root_node = load()
-    runner = Runner(root_node, act_args)
+    runner = Runner(root_node, laz_args)
     runner.run()
 
 
@@ -30,6 +30,6 @@ def _split_args() -> Tuple[List[str], List[str]]:
     return sys.argv[1:], []
 
 
-parser = argparse.ArgumentParser(description='act cli')
+parser = argparse.ArgumentParser(description='laz cli')
 
 parser.add_argument('--verbose', '-v', action='count', default=0, help='Set logging verbosity')

@@ -6,10 +6,10 @@ import subprocess
 from typing import List, Union
 
 # internal
-from act.utils.errors import ActValueError
-from act.utils import log
-from act.utils.types import Data, DictData, ListData
-from act.model.target import Target
+from laz.utils.errors import LazValueError
+from laz.utils import log
+from laz.utils.types import Data, DictData, ListData
+from laz.model.target import Target
 
 
 class Action:
@@ -45,7 +45,7 @@ class Action:
     def raise_value_error(cls, target: Target, run_data: Data):
         log.error(f'target -> {target}')
         log.error(f'run data -> {run_data}')
-        raise ActValueError(f'Given values could not be handled as a {cls.__name__}')
+        raise LazValueError(f'Given values could not be handled as a {cls.__name__}')
 
 
 class ConfiguredAction(Action):

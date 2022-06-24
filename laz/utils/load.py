@@ -3,11 +3,11 @@ import os
 from typing import List, Optional as Opt, Union
 
 # internal
-from act.utils.errors import ActRuntimeError
-from act.utils import log
-from act.model.configuration import Configuration
-from act.model.tree import Node
-from act.utils.funcs import compact, flatten
+from laz.utils.errors import LazRuntimeError
+from laz.utils import log
+from laz.model.configuration import Configuration
+from laz.model.tree import Node
+from laz.utils.funcs import compact, flatten
 
 
 def load(dirpath: str = '.') -> Node:
@@ -26,7 +26,7 @@ def _find_rootpath(dirpath: str) -> str:
         if os.path.isfile(filepath):
             rootpath = dirpath
     if rootpath is None:
-        raise ActRuntimeError('Could not find root act.yml')
+        raise LazRuntimeError('Could not find root act.yml')
     log.debug(f'Root act.yml found: {rootpath}')
     return rootpath
 

@@ -2,14 +2,14 @@
 import unittest
 
 # internal
-from act.utils.merge import merge
-from act.utils.errors import ActTypeError
+from laz.utils.merge import merge
+from laz.utils.errors import LazTypeError
 
 
 class TestMerge(unittest.TestCase):
 
     def test_non_matching_types(self):
-        with self.assertRaises(ActTypeError):
+        with self.assertRaises(LazTypeError):
             merge({}, [])
 
 

@@ -2,7 +2,7 @@
 import unittest
 
 # internal
-from act.model.base import BaseObject
+from laz.model.base import BaseObject
 
 
 class TestBaseObject(unittest.TestCase):

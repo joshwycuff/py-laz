@@ -14,7 +14,7 @@ _loggers = {}
 
 
 def get_logger(
-        name: str = 'act',
+        name: str = 'laz',
         level: Opt[Union[int, str]] = None,
         verbosity: Opt[int] = None,
         default_level: Opt[Union[int, str]] = None,

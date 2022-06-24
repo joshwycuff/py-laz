@@ -3,8 +3,8 @@ from __future__ import annotations
 import os
 
 # internal
-from act.model.base import BaseObject
-from act.model.target import Target
+from laz.model.base import BaseObject
+from laz.model.target import Target
 
 
 class Configuration(BaseObject):

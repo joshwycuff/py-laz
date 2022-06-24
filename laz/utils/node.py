@@ -2,9 +2,9 @@
 import os
 
 # internal
-from act.model.configuration import Configuration
-from act.model.tree import Node
-from act.model.target import Target
+from laz.model.configuration import Configuration
+from laz.model.tree import Node
+from laz.model.target import Target
 
 
 def get_target_configuration(node: Node, target_name: str) -> Target:

@@ -3,8 +3,8 @@ from __future__ import annotations
 from typing import List, Optional as Opt
 
 # internal
-from act.model.configuration import Configuration
-from act.utils.funcs import flatten
+from laz.model.configuration import Configuration
+from laz.utils.funcs import flatten
 
 
 class Node:

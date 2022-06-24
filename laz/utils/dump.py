@@ -1,5 +1,5 @@
 # internal
-from act.model.configuration import Configuration
+from laz.model.configuration import Configuration
 
 
 def dump(filepath: str, configuration: Configuration):

@@ -6,8 +6,8 @@ from typing import Optional as Opt
 from jinja2 import Template
 
 # internal
-from act.utils.errors import ActTypeError
-from act.utils.types import AtomicData, Data, DictData, ListData
+from laz.utils.errors import LazTypeError
+from laz.utils.types import AtomicData, Data, DictData, ListData
 
 
 def expand(data: Data, variables: Opt[DictData] = None) -> Data:
@@ -25,7 +25,7 @@ def _expand(data: Data, variables: DictData) -> Data:
     elif isinstance(data, (type(None), bool, int, str)):
         return _expand_atomics(data, variables)
     else:
-        raise ActTypeError(f'Cannot expand input of type {type(data)}')
+        raise LazTypeError(f'Cannot expand input of type {type(data)}')
 
 
 def _expand_dict(data: DictData, variables: DictData) -> DictData:

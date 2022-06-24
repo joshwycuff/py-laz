@@ -2,11 +2,11 @@
 from typing import List
 
 # internal
-from act.model.tree import Node
-from act.model.path import Path
-from act.model.resolver import Resolver
-from act.model.target import Target
-from act.model.act import Act
+from laz.model.tree import Node
+from laz.model.path import Path
+from laz.model.resolver import Resolver
+from laz.model.target import Target
+from laz.model.act import Act
 
 
 class Runner:

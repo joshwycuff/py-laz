@@ -3,11 +3,11 @@ from fnmatch import fnmatch
 from typing import List
 
 # internal
-from act.model.configuration import Configuration
-from act.model.path import Path
-from act.model.target import Target
-from act.model.tree import Node
-from act.utils.node import get_node_configuration, get_target_configuration
+from laz.model.configuration import Configuration
+from laz.model.path import Path
+from laz.model.target import Target
+from laz.model.tree import Node
+from laz.utils.node import get_node_configuration, get_target_configuration
 
 
 class Resolver:

@@ -3,13 +3,13 @@ from copy import deepcopy
 import itertools
 
 # internal
-from act.utils.types import AtomicData, ListData, DictData, Data
-from act.utils.errors import ActTypeError
+from laz.utils.types import AtomicData, ListData, DictData, Data
+from laz.utils.errors import LazTypeError
 
 
 def merge(left: Data, right: Data) -> Data:
     if type(left) != type(right):
-        raise ActTypeError(f'merge inputs must be same type. Got {type(left)} and {type(right)}')
+        raise LazTypeError(f'merge inputs must be same type. Got {type(left)} and {type(right)}')
     return _merge(deepcopy(left), deepcopy(right))
 
 
@@ -25,7 +25,7 @@ def _merge(left: Data, right: Data) -> Data:
     elif right is None:
         return left
     else:
-        raise ActTypeError(f'merge inputs must be same type. Got {type(left)} and {type(right)}')
+        raise LazTypeError(f'merge inputs must be same type. Got {type(left)} and {type(right)}')
 
 
 def _merge_dicts(left: DictData, right: DictData) -> DictData:

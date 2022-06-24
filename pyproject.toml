@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "py-act"
+name = "laz"
 version = "0.0.1a0"
 description = "CLI tool to configure and run parameterized actions against targets."
 authors = ["Josh Wycuff <Josh.Wycuff@gmail.com>"]
 readme = "README.md"
-packages = [{include = "act"}]
+packages = [{include = "laz"}]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4"
@@ -16,4 +16,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-act = "act.main:main"
+laz = "laz.main:main"
