@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "act"
+name = "py-act"
 version = "0.0.1a0"
 description = "CLI tool to configure and run parameterized actions against targets."
 authors = ["Josh Wycuff <Josh.Wycuff@gmail.com>"]
