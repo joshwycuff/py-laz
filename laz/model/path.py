@@ -17,4 +17,7 @@ class Path:
 
     @property
     def base_pattern(self) -> str:
-        return f'**/{self.base}/**'
+        if self.base == '':
+            return '**'
+        else:
+            return f'**/{self.base}/**'

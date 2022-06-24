@@ -5,6 +5,7 @@ from typing import List, Tuple
 
 # internal
 from laz.utils.errors import LazRuntimeError
+from laz.cli.parser import parser
 from laz.utils.load import load
 from laz.utils.logging import get_logger
 from laz.model.runner import Runner
@@ -28,8 +29,3 @@ def _split_args() -> Tuple[List[str], List[str]]:
         if i > 0 and not s.startswith('-'):
             return sys.argv[1:i], sys.argv[i:]
     return sys.argv[1:], []
-
-
-parser = argparse.ArgumentParser(description='laz cli')
-
-parser.add_argument('--verbose', '-v', action='count', default=0, help='Set logging verbosity')
