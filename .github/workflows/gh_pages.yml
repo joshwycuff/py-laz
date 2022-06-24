@@ -4,11 +4,12 @@ on:
     branches:
       - main
 jobs:
-  Publish:
+  gh-pages:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+      - run: git fetch origin gh-pages
       - run: pip install poetry==1
       - run: poetry install
       - run: poetry run mkdocs gh-deploy
