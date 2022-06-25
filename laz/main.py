@@ -15,6 +15,9 @@ def main():
     elif subcommand == 'init':
         from laz.cli.subcommands.init import init
         init()
+    elif subcommand == 'tree':
+        from laz.cli.subcommands.tree import tree
+        tree()
     else:
         from laz.cli.root import root
         root()

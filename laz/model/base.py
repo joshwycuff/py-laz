@@ -24,4 +24,5 @@ class BaseObject(Serializable, Stackable):
 
     @classmethod
     def deserialize(cls, id: str, serialized: str) -> BaseObject:
-        return cls(id, **yaml.load(serialized, Loader=SafeLoader))
+        data = yaml.load(serialized, Loader=SafeLoader) or {}
+        return cls(id, **data)

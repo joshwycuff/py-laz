@@ -49,4 +49,4 @@ def _listdirs(dirpath: str) -> List[str]:
     for entry in os.scandir(dirpath):
         if entry.is_dir():
             dirs.append(entry.path)
-    return dirs
+    return sorted(dirs)
