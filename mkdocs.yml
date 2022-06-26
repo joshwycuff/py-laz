@@ -2,3 +2,9 @@ site_name: Laz
 site_url: https://joshwycuff.github.io/py-laz
 theme:
   name: material
+nav:
+  - index.md
+  - quick_start.md
+  - concepts.md
+  - actions.md
+  - plugins.md
