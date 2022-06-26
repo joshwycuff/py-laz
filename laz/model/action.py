@@ -77,8 +77,10 @@ class MultipleActions(Action):
         self.actions = [Action.new(target, d) for d in self.run_data]
 
     def run(self):
+        results = []
         for action in self.actions:
-            action.run()
+            results.append(action.run())
+        return results
 
     @classmethod
     def is_handler(cls, target: Target, run_data: Data) -> bool:
@@ -89,18 +91,66 @@ class MultipleActions(Action):
         return MultipleActions(target, run_data)
 
 
+class ConditionalAction(Action):
+
+    def run(self):
+        result = Action.new(self.target, self.run_data['condition']).run()
+        if bool(result):
+            if 'if' in self.run_data:
+                return Action.new(self.target, self.run_data['if']).run()
+        else:
+            if 'else' in self.run_data:
+                return Action.new(self.target, self.run_data['else']).run()
+
+    @classmethod
+    def is_handler(cls, target: Target, run_data: Data) -> bool:
+        return isinstance(run_data, dict) and 'condition' in run_data
+
+    @classmethod
+    def new(cls, target: Target, run_data: DictData) -> Action:
+        return cls(target, run_data)
+
+
+class SwitchAction(Action):
+
+    def run(self):
+        result = Action.new(self.target, self.run_data['switch']).run()
+        if result in self.run_data:
+            return Action.new(self.target, self.run_data[result]).run()
+        elif 'default' in self.run_data:
+            return Action.new(self.target, self.run_data['default']).run()
+        else:
+            return
+
+    @classmethod
+    def is_handler(cls, target: Target, run_data: Data) -> bool:
+        return isinstance(run_data, dict) and 'switch' in run_data
+
+    @classmethod
+    def new(cls, target: Target, run_data: DictData) -> Action:
+        return cls(target, run_data)
+
+
 class ShellAction(Action):
+    run_data: DictData
 
     def run(self):
         env = {
             **os.environ,
             **self.target.data.get('env', {}),
         }
-        subprocess.run(self.args(), env=env)
+        if self.run_data.get('capture'):
+            type_str = self.run_data.get('type', 'str')
+            result = subprocess.run(self.args(), env=env, capture_output=True).stdout.decode()
+            if self.run_data.get('strip', True):
+                result = result.strip()
+            result = eval(f'{type_str}({result})')
+            return result
+        else:
+            return subprocess.run(self.args(), env=env).returncode == 0
 
     def args(self) -> List[str]:
-        args = self.run_data if isinstance(self.run_data, str) else ' '.join(self.run_data)
-        return [self._shell(), '-c', args]
+        return [self._shell(), '-c', self.run_data['command']]
 
     def _shell(self) -> str:
         return os.environ.get('SHELL', 'bash')
@@ -109,20 +159,22 @@ class ShellAction(Action):
     def is_handler(cls, target: Target, run_data: Data) -> bool:
         if isinstance(run_data, str):
             return True
-        elif isinstance(run_data, list) and all(isinstance(x, str) for x in run_data):
+        elif isinstance(run_data, dict) and 'command' in run_data:
             return True
         else:
             cls.raise_value_error(target, run_data)
 
     @classmethod
-    def new(cls, target: Target, run_data: Union[str, List[str]]) -> Action:
+    def new(cls, target: Target, run_data: Union[str, DictData]) -> Action:
+        if isinstance(run_data, str):
+            run_data = {'command': run_data}
         return cls(target, run_data)
 
 
 class PythonAction(Action):
 
     def run(self):
-        eval(self.run_data['python'])
+        return eval(self.run_data['python'])
 
     @classmethod
     def is_handler(cls, target: Target, run_data: Data) -> bool:

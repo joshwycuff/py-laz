@@ -16,7 +16,7 @@ class Act:
         target.push(expand(target.data))
         self.target = target
         self.args = expand(args, target.data)
-        self.action = Action.new(self.target, self.args)
+        self.action = Action.new(self.target, ' '.join(self.args))
 
     def act(self):
         with in_dir(self.target.data['dirpath']):

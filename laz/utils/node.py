@@ -20,6 +20,7 @@ def get_node_configuration(node: Node) -> Configuration:
     data = {
         'dirpath': os.path.dirname(node.configuration.filepath),
         'filepath': node.configuration.filepath,
+        'name': node.configuration.name,
     }
     conf = Configuration(node.configuration.id, **data)
     for node in nodes:
