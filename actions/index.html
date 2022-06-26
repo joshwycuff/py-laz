@@ -8,21 +8,21 @@
       
       
       
-        <link rel="canonical" href="https://joshwycuff.github.io/py-laz/">
+        <link rel="canonical" href="https://joshwycuff.github.io/py-laz/actions/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.7">
     
     
       
-        <title>Laz</title>
+        <title>Actions - Laz</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.4a0965b7.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.4a0965b7.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
       
       
@@ -38,7 +38,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#laz" class="md-skip">
+        <a href="#actions" class="md-skip">
           Skip to content
         </a>
       
@@ -76,7 +76,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Laz" class="md-header__button md-logo" aria-label="Laz" data-md-component="logo">
+    <a href=".." title="Laz" class="md-header__button md-logo" aria-label="Laz" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -95,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Laz
+              Actions
             
           </span>
         </div>
@@ -162,7 +162,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Laz" class="md-nav__button md-logo" aria-label="Laz" data-md-component="logo">
+    <a href=".." title="Laz" class="md-nav__button md-logo" aria-label="Laz" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -172,6 +172,21 @@
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Laz
+      </a>
+    </li>
+  
+
     
       
       
@@ -191,12 +206,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Laz
+          Actions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
-        Laz
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Actions
       </a>
       
         
@@ -215,9 +230,76 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#shell-action" class="md-nav__link">
+    Shell Action
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-action" class="md-nav__link">
+    Python Action
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-actions" class="md-nav__link">
+    Multiple Actions
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-action" class="md-nav__link">
+    Conditional Action
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional Action">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-action" class="md-nav__link">
+    Switch Action
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch Action">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -237,22 +319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="actions/" class="md-nav__link">
-        Actions
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="concepts/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         Concepts
       </a>
     </li>
@@ -286,9 +353,76 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#shell-action" class="md-nav__link">
+    Shell Action
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-action" class="md-nav__link">
+    Python Action
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-actions" class="md-nav__link">
+    Multiple Actions
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-action" class="md-nav__link">
+    Conditional Action
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional Action">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-action" class="md-nav__link">
+    Switch Action
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch Action">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -306,14 +440,39 @@
                 
 
 
-<h1 id="laz">Laz</h1>
-<p>A CLI tool to configure and run parameterized actions against targets.</p>
-<h2 id="installation">Installation</h2>
-<p>Laz currently requires Python 3.8+.</p>
-<pre><code class="language-shell">pip3 install --user laz
+<h1 id="actions">Actions</h1>
+<h2 id="shell-action">Shell Action</h2>
+<pre><code class="language-yaml">actions:
+  example: echo hello
 </code></pre>
-<p>You can check your installation by running:</p>
-<pre><code class="language-shell">laz version
+<h2 id="python-action">Python Action</h2>
+<pre><code class="language-yaml">actions:
+  example:
+    python: print('hello')
+</code></pre>
+<h2 id="multiple-actions">Multiple Actions</h2>
+<h3 id="example">Example</h3>
+<pre><code class="language-yaml">actions:
+  example:
+    - echo 1
+    - echo 2
+</code></pre>
+<h2 id="conditional-action">Conditional Action</h2>
+<h3 id="example_1">Example</h3>
+<pre><code class="language-yaml">actions:
+  example:
+    condition: &quot;[[ -z $USER ]]&quot;
+    if: echo $USER
+    else: echo no user
+</code></pre>
+<h2 id="switch-action">Switch Action</h2>
+<h3 id="example_2">Example</h3>
+<pre><code class="language-yaml">actions:
+  example:
+    switch:
+      python: print('x')
+    x: echo x
+    y: echo y
 </code></pre>
 
               
@@ -329,15 +488,30 @@
     
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Laz" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Laz
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="actions/" class="md-footer__link md-footer__link--next" aria-label="Next: Actions" rel="next">
+        <a href="../concepts/" class="md-footer__link md-footer__link--next" aria-label="Next: Concepts" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Actions
+              Concepts
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -367,10 +541,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.0238f547.min.js"></script>
+      <script src="../assets/javascripts/bundle.0238f547.min.js"></script>
       
     
   </body>
