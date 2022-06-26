@@ -15,4 +15,14 @@
          <lastmod>2022-06-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
+    <url>
+         <loc>https://joshwycuff.github.io/py-laz/plugins/</loc>
+         <lastmod>2022-06-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://joshwycuff.github.io/py-laz/quick_start/</loc>
+         <lastmod>2022-06-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
 </urlset>
