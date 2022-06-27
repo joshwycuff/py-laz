@@ -250,25 +250,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#template-expressions" class="md-nav__link">
+    Template Expressions
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../commands/" class="md-nav__link">
-        Commands
-      </a>
     </li>
   
 
@@ -333,6 +325,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -376,6 +383,13 @@
         <li class="md-nav__item">
   <a href="#actions" class="md-nav__link">
     Actions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-expressions" class="md-nav__link">
+    Template Expressions
   </a>
   
 </li>
@@ -429,6 +443,34 @@ hello
 hello
 </code></pre>
 <h2 id="actions">Actions</h2>
+<p>If you have a set of commands that you run often, you can codify them as an action:</p>
+<pre><code class="language-yaml">targets:
+  dev:
+actions:
+  things:
+    - echo thing 1
+    - echo thing 2
+</code></pre>
+<pre><code class="language-shell">$ laz dev things
+thing 1
+thing 2
+</code></pre>
+<h2 id="template-expressions">Template Expressions</h2>
+<p>Laz uses <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a> to provide access to the entire
+configuration context during the evaluation of template expressions.</p>
+<p>For example, if you want to print out the name of the current configuration file:</p>
+<pre><code class="language-yaml">name: abc
+target:
+  dev:
+</code></pre>
+<pre><code class="language-shell">$ laz dev echo &quot;{{ name }}&quot;
+abc
+</code></pre>
+<p>There are other special values added to the configuration dynamically such as the name of the
+current target.</p>
+<pre><code class="language-shell">$ laz dev echo &quot;{{ target.name }}&quot;
+dev
+</code></pre>
 
               
             </article>
@@ -460,13 +502,13 @@ hello
       
       
         
-        <a href="../commands/" class="md-footer__link md-footer__link--next" aria-label="Next: Commands" rel="next">
+        <a href="../concepts/" class="md-footer__link md-footer__link--next" aria-label="Next: Concepts" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Commands
+              Concepts
             </div>
           </div>
           <div class="md-footer__button md-icon">
