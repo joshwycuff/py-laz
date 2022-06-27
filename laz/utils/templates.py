@@ -10,7 +10,7 @@ from laz.utils.errors import LazTypeError
 from laz.utils.types import AtomicData, Data, DictData, ListData
 
 
-def expand(data: Data, variables: Opt[DictData] = None) -> Data:
+def evaluate(data: Data, variables: Opt[DictData] = None) -> Data:
     if variables is None and isinstance(data, dict):
         variables = data
     data = deepcopy(data)
