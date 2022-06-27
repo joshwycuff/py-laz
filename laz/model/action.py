@@ -3,7 +3,7 @@ from __future__ import annotations
 from abc import abstractmethod
 import os
 import subprocess
-from typing import List, Union
+from typing import List, Optional as Opt, Union
 
 # internal
 from laz.utils.errors import LazValueError
@@ -42,10 +42,32 @@ class Action:
         cls.raise_value_error(target, run_data)
 
     @classmethod
-    def raise_value_error(cls, target: Target, run_data: Data):
-        log.error(f'target -> {target}')
+    def raise_value_error(cls, target: Target, run_data: Data, msg: Opt[str] = None):
+        log.error(f'target -> {target.serialize()}')
         log.error(f'run data -> {run_data}')
-        raise LazValueError(f'Given values could not be handled as a {cls.__name__}')
+        msg = msg or f'Given values could not be handled as a {cls.__name__}'
+        raise LazValueError(msg)
+
+
+class DefaultAction(Action):
+
+    def run(self):
+        raise NotImplementedError
+
+    @classmethod
+    def is_handler(cls, target: Target, run_data: Data) -> bool:
+        if isinstance(run_data, str) and run_data == 'default':
+            return True
+        else:
+            return False
+
+    @classmethod
+    def new(cls, target: Target, run_data: Data) -> Action:
+        configured_actions: DictData = target.data.get('actions', {})
+        if isinstance(run_data, str) and run_data in configured_actions:
+            return Action.new(target, configured_actions[run_data])
+        else:
+            cls.raise_value_error(target, run_data, 'No default action found')
 
 
 class ConfiguredAction(Action):
