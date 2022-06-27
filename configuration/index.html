@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://joshwycuff.github.io/py-laz/quick_start/">
+        <link rel="canonical" href="https://joshwycuff.github.io/py-laz/configuration/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.7">
     
     
       
-        <title>Quick Start - Laz</title>
+        <title>Configuration - Laz</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quick-start" class="md-skip">
+        <a href="#configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -95,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Quick Start
+              Configuration
             
           </span>
         </div>
@@ -194,66 +194,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Quick Start
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../quick_start/" class="md-nav__link">
         Quick Start
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#configuration-file" class="md-nav__link">
-    Configuration File
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#targets" class="md-nav__link">
-    Targets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#actions" class="md-nav__link">
-    Actions
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -294,11 +239,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Configuration
       </a>
+      
     </li>
   
 
@@ -353,35 +308,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#configuration-file" class="md-nav__link">
-    Configuration File
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#targets" class="md-nav__link">
-    Targets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#actions" class="md-nav__link">
-    Actions
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -394,41 +320,8 @@
                 
 
 
-<h1 id="quick-start">Quick Start</h1>
-<h2 id="configuration-file">Configuration File</h2>
-<p>A basic example configuration file may look like the following:</p>
-<pre><code class="language-yaml">env:
-  ENV_VAR: value
-targets:
-  prod:
-  dev:
-actions:
-  example: echo example
-</code></pre>
-<p>The above configuration file defines a few different things:</p>
-<ul>
-<li>An environment variable named <code>ENV_VAR</code> with the value <code>value</code> to be exposed to all commands run
-  by Laz.</li>
-<li>Two targets: <code>prod</code> and <code>dev</code>.</li>
-<li>A single defined action, named <code>example</code>. It simply invokes a shell that echos out "example".</li>
-</ul>
-<p>Note that nothing is stopping you from storing additional information in other top-level keys.</p>
-<h2 id="targets">Targets</h2>
-<p>A typical Laz command looks like the following:</p>
-<pre><code class="language-shell">laz &lt;path&gt; [&lt;arg1&gt;] ... [&lt;argN&gt;]
-</code></pre>
-<p>A Laz command will not run if the given path does not resolve to defined targets. For example, to
-run a command against the dev target defined in the previous example configuration file, you would
-run something like:</p>
-<pre><code class="language-shell">$ laz dev echo hello
-hello
-</code></pre>
-<p>You can run commands against multiple targets using glob patterns:</p>
-<pre><code class="language-shell">$ laz &quot;*&quot; echo hello
-hello
-hello
-</code></pre>
-<h2 id="actions">Actions</h2>
+<h1 id="configuration">Configuration</h1>
+<p>TODO</p>
 
               
             </article>
@@ -444,7 +337,7 @@ hello
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Laz" rel="prev">
+        <a href="../concepts/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Concepts" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -453,20 +346,20 @@ hello
               <span class="md-footer__direction">
                 Previous
               </span>
-              Laz
+              Concepts
             </div>
           </div>
         </a>
       
       
         
-        <a href="../commands/" class="md-footer__link md-footer__link--next" aria-label="Next: Commands" rel="next">
+        <a href="../actions/" class="md-footer__link md-footer__link--next" aria-label="Next: Actions" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Commands
+              Actions
             </div>
           </div>
           <div class="md-footer__button md-icon">
