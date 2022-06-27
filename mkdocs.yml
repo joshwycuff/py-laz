@@ -6,5 +6,6 @@ nav:
   - index.md
   - quick_start.md
   - concepts.md
+  - configuration.md
   - actions.md
   - plugins.md

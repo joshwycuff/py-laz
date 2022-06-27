@@ -2,12 +2,16 @@
 
 ## Shell Action
 
+### Example
+
 ```yaml
 actions:
   example: echo hello
 ```
 
 ## Python Action
+
+### Example
 
 ```yaml
 actions:
