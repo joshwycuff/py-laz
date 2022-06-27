@@ -5,8 +5,8 @@ theme:
 nav:
   - index.md
   - quick_start.md
-  - commands.md
   - concepts.md
   - configuration.md
   - actions.md
   - plugins.md
+  - cli.md

@@ -1,4 +1,4 @@
-# Commands
+# CLI
 
 ## Usage
 

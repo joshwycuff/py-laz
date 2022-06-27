@@ -49,3 +49,46 @@ hello
 ```
 
 ## Actions
+
+If you have a set of commands that you run often, you can codify them as an action:
+
+```yaml
+targets:
+  dev:
+actions:
+  things:
+    - echo thing 1
+    - echo thing 2
+```
+
+```shell
+$ laz dev things
+thing 1
+thing 2
+```
+
+## Template Expressions
+
+Laz uses [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) to provide access to the entire
+configuration context during the evaluation of template expressions.
+
+For example, if you want to print out the name of the current configuration file:
+
+```yaml
+name: abc
+target:
+  dev:
+```
+
+```shell
+$ laz dev echo "{{ name }}"
+abc
+```
+
+There are other special values added to the configuration dynamically such as the name of the
+current target.
+
+```shell
+$ laz dev echo "{{ target.name }}"
+dev
+```

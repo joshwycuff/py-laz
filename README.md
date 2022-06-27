@@ -15,3 +15,7 @@ You can check your installation by running:
 ```shell
 laz version
 ```
+
+## Documentation
+
+https://joshwycuff.github.io/py-laz/
