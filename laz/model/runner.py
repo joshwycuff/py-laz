@@ -1,8 +1,10 @@
 # std
 import argparse
+import traceback
 from typing import List
 
 # internal
+from laz.utils.errors import LazRuntimeError
 from laz.model.tree import Node
 from laz.model.path import Path
 from laz.model.resolver import Resolver
@@ -26,7 +28,15 @@ class Runner:
         return targets
 
     def run(self):
+        failures = []
         targets = self.resolve()
         for target in targets:
-            act = Act(target, self.args)
-            act.act()
+            try:
+                act = Act(target, self.args)
+                act.act()
+            except Exception as e:
+                failures.append((e, traceback.format_tb()))
+        for failure in failures:
+            print(failure)
+        if failures:
+            raise LazRuntimeError('Some actions failed')
