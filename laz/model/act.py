@@ -1,7 +1,8 @@
 # std
-from typing import List
+from typing import List, Optional as Opt
 
 # internal
+from laz.utils.errors import LazValueError
 from laz.utils.contexts import in_dir
 from laz.model.action import Action
 from laz.model.target import Target
@@ -10,13 +11,21 @@ from laz.utils.templates import evaluate
 
 class Act:
 
-    def __init__(self, target: Target, args: List[str]):
-        target.push({'args': args})
+    def __init__(self, target: Target, action: Action):
         target.push(evaluate(target.data))
         self.target = target
-        self.args = evaluate(args, target.data)
-        self.action = Action.new(self.target, ' '.join(self.args))
+        self.action = action
 
     def act(self):
         with in_dir(self.target.data['dirpath']):
             self.action.run()
+
+    @classmethod
+    def new(cls, target: Target, action: Opt[Action] = None, args: Opt[str] = None):
+        if action is None and args is None:
+            raise LazValueError('Must provide action or args')
+        if action is not None:
+            return Act(target, action)
+        else:
+            action = Action.new(target, args)
+            return Act(target, action)

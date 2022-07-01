@@ -19,6 +19,10 @@ class Runner:
         self.cli_args = cli_args
         self.path = Path(args[0])
         self.args = args[1:]
+        self.root_node.configuration.push({
+            'path': args[0],
+            'args': args[1:],
+        })
 
     def resolve(self) -> List[Target]:
         resolver = Resolver(self.root_node, self.path)
@@ -32,10 +36,10 @@ class Runner:
         targets = self.resolve()
         for target in targets:
             try:
-                act = Act(target, self.args)
+                act = Act.new(target, args=' '.join(self.args))
                 act.act()
             except Exception as e:
-                failures.append((e, traceback.format_tb()))
+                failures.append((e, traceback.format_exc()))
         for failure in failures:
             print(failure)
         if failures:

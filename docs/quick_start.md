@@ -11,6 +11,7 @@ targets:
   prod:
   dev:
 actions:
+  default: echo default
   example: echo example
 ```
 
@@ -19,7 +20,8 @@ The above configuration file defines a few different things:
 - An environment variable named `ENV_VAR` with the value `value` to be exposed to all commands run
   by Laz.
 - Two targets: `prod` and `dev`.
-- A single defined action, named `example`. It simply invokes a shell that echos out "example".
+- Two defined actions, `default` and `example`. They simply invoke shell which echo "default" and "
+  example", respectively.
 
 Note that nothing is stopping you from storing additional information in other top-level keys.
 
@@ -56,6 +58,7 @@ If you have a set of commands that you run often, you can codify them as an acti
 targets:
   dev:
 actions:
+  default: echo i am the default action
   things:
     - echo thing 1
     - echo thing 2
@@ -65,6 +68,13 @@ actions:
 $ laz dev things
 thing 1
 thing 2
+```
+
+If you do not provide an action, Laz will attempt to run a default action.
+
+```shell
+$ laz dev
+i am the default action
 ```
 
 ## Template Expressions
