@@ -417,6 +417,7 @@ targets:
   prod:
   dev:
 actions:
+  default: echo default
   example: echo example
 </code></pre>
 <p>The above configuration file defines a few different things:</p>
@@ -424,7 +425,8 @@ actions:
 <li>An environment variable named <code>ENV_VAR</code> with the value <code>value</code> to be exposed to all commands run
   by Laz.</li>
 <li>Two targets: <code>prod</code> and <code>dev</code>.</li>
-<li>A single defined action, named <code>example</code>. It simply invokes a shell that echos out "example".</li>
+<li>Two defined actions, <code>default</code> and <code>example</code>. They simply invoke shell which echo "default" and "
+  example", respectively.</li>
 </ul>
 <p>Note that nothing is stopping you from storing additional information in other top-level keys.</p>
 <h2 id="targets">Targets</h2>
@@ -447,6 +449,7 @@ hello
 <pre><code class="language-yaml">targets:
   dev:
 actions:
+  default: echo i am the default action
   things:
     - echo thing 1
     - echo thing 2
@@ -454,6 +457,10 @@ actions:
 <pre><code class="language-shell">$ laz dev things
 thing 1
 thing 2
+</code></pre>
+<p>If you do not provide an action, Laz will attempt to run a default action.</p>
+<pre><code class="language-shell">$ laz dev
+i am the default action
 </code></pre>
 <h2 id="template-expressions">Template Expressions</h2>
 <p>Laz uses <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a> to provide access to the entire
