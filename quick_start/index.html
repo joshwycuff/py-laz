@@ -257,6 +257,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hooks" class="md-nav__link">
+    Hooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    Plugins
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-projects" class="md-nav__link">
+    Sub-Projects
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -409,6 +430,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hooks" class="md-nav__link">
+    Hooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    Plugins
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-projects" class="md-nav__link">
+    Sub-Projects
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -493,6 +535,38 @@ current target.</p>
 <pre><code class="language-shell">$ laz dev echo &quot;{{ target.name }}&quot;
 dev
 </code></pre>
+<h2 id="hooks">Hooks</h2>
+<p>Hooks can be used to perform actions before or after certain points in the program. The built-in
+hooks that are available are:</p>
+<ul>
+<li><code>before_all</code> - Runs before all targets.</li>
+<li><code>before_target</code> - Runs before each target.</li>
+<li><code>after_target</code> - Runs after each target.</li>
+<li><code>after_all</code> - Runs after all targets.</li>
+</ul>
+<pre><code class="language-yaml">target:
+  dev:
+  prod:
+hooks:
+  before_all: echo before all
+  before_target: echo before target
+  after_target: echo after target
+  after_all: echo after all
+</code></pre>
+<pre><code class="language-shell">$ laz &quot;*&quot; echo &quot;{{ target.name }}&quot;
+before all
+before target
+dev
+after target
+before target
+prod
+after target
+after all
+</code></pre>
+<h2 id="plugins">Plugins</h2>
+<p>TODO</p>
+<h2 id="sub-projects">Sub-Projects</h2>
+<p>TODO</p>
 
               
             </article>
