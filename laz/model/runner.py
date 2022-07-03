@@ -11,6 +11,7 @@ from laz.model.resolver import Resolver
 from laz.model.configuration import Configuration
 from laz.model.target import Target
 from laz.model.act import Act
+from laz.model.action import Action
 from laz.plugins.plugin import PLUGINS
 
 
@@ -64,6 +65,11 @@ class Runner:
                 plugin.before_all()
             except NotImplementedError:
                 pass
+        hook = configuration.data.get('hooks', {}).get('before_all')
+        if hook is not None:
+            action = Action.new(configuration, hook)
+            act = Act(configuration, action=action)
+            act.act()
 
     @staticmethod
     def before_target(target: Target):
@@ -74,6 +80,11 @@ class Runner:
                 plugin.before_target()
             except NotImplementedError:
                 pass
+        hook = target.data.get('hooks', {}).get('before_target')
+        if hook is not None:
+            action = Action.new(target, hook)
+            act = Act(target, action=action)
+            act.act()
 
     @staticmethod
     def after_target(target: Target):
@@ -84,6 +95,11 @@ class Runner:
                 plugin.after_target()
             except NotImplementedError:
                 pass
+        hook = target.data.get('hooks', {}).get('after_target')
+        if hook is not None:
+            action = Action.new(target, hook)
+            act = Act(target, action=action)
+            act.act()
 
     @staticmethod
     def after_all(configuration: Configuration):
@@ -94,3 +110,8 @@ class Runner:
                 plugin.after_all()
             except NotImplementedError:
                 pass
+        hook = configuration.data.get('hooks', {}).get('after_all')
+        if hook is not None:
+            action = Action.new(configuration, hook)
+            act = Act(configuration, action=action)
+            act.act()

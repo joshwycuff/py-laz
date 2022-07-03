@@ -102,3 +102,44 @@ current target.
 $ laz dev echo "{{ target.name }}"
 dev
 ```
+
+## Hooks
+
+Hooks can be used to perform actions before or after certain points in the program. The built-in
+hooks that are available are:
+
+- `before_all` - Runs before all targets.
+- `before_target` - Runs before each target.
+- `after_target` - Runs after each target.
+- `after_all` - Runs after all targets.
+
+```yaml
+target:
+  dev:
+  prod:
+hooks:
+  before_all: echo before all
+  before_target: echo before target
+  after_target: echo after target
+  after_all: echo after all
+```
+
+```shell
+$ laz "*" echo "{{ target.name }}"
+before all
+before target
+dev
+after target
+before target
+prod
+after target
+after all
+```
+
+## Plugins
+
+TODO
+
+## Sub-Projects
+
+TODO
