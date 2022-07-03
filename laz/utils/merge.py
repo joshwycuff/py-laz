@@ -24,6 +24,12 @@ def _merge(left: Data, right: Data) -> Data:
         return right
     elif right is None:
         return left
+    elif isinstance(left, list) or isinstance(right, list):
+        if isinstance(left, list):
+            right = [right]
+        else:
+            left = [left]
+        return _merge_lists(left, right)
     else:
         raise LazTypeError(f'merge inputs must be same type. Got {type(left)} and {type(right)}')
 
@@ -37,10 +43,7 @@ def _merge_dicts(left: DictData, right: DictData) -> DictData:
 
 
 def _merge_lists(left: ListData, right: ListData) -> ListData:
-    new_list = [None] * max(len(left), len(right))
-    for i, (l, r) in enumerate(itertools.zip_longest(left, right)):
-        new_list[i] = _merge(l, r)
-    return new_list
+    return left + right
 
 
 def _merge_atomics(left: AtomicData, right: AtomicData) -> AtomicData:
