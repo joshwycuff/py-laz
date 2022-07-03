@@ -77,22 +77,22 @@ $ laz dev
 i am the default action
 ```
 
-## Template Expressions
+## Jinja Variables
 
 Laz uses [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) to provide access to the entire
-configuration context during the evaluation of template expressions.
+configuration context during the evaluation of Jinja variables.
 
-For example, if you want to print out the name of the current configuration file:
+For example, if you want to print out an arbitrary configuration field:
 
 ```yaml
-name: abc
+abc: xyz
 target:
   dev:
 ```
 
 ```shell
-$ laz dev echo "{{ name }}"
-abc
+$ laz dev echo "{{ abc }}"
+xyz
 ```
 
 There are other special values added to the configuration dynamically such as the name of the

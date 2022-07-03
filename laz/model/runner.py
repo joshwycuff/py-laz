@@ -1,15 +1,17 @@
 # std
 import argparse
-import traceback
 from typing import List
 
 # internal
-from laz.utils.errors import LazRuntimeError
+from laz.utils import log
+from laz.utils.contexts import in_dir
 from laz.model.tree import Node
 from laz.model.path import Path
 from laz.model.resolver import Resolver
+from laz.model.configuration import Configuration
 from laz.model.target import Target
 from laz.model.act import Act
+from laz.plugins.plugin import PLUGINS
 
 
 class Runner:
@@ -32,15 +34,63 @@ class Runner:
         return targets
 
     def run(self):
-        failures = []
+        self.load_plugins(self.root_node.configuration)
+        self.before_all(self.root_node.configuration)
         targets = self.resolve()
         for target in targets:
-            try:
-                act = Act.new(target, args=' '.join(self.args))
+            with in_dir(target.data['dirpath']):
+                self.before_target(target)
+                args = ' '.join(target.data['args'])
+                act = Act.new(target, args=args)
                 act.act()
-            except Exception as e:
-                failures.append((e, traceback.format_exc()))
-        for failure in failures:
-            print(failure)
-        if failures:
-            raise LazRuntimeError('Some actions failed')
+                self.after_target(target)
+        self.after_all(self.root_node.configuration)
+
+    @staticmethod
+    def load_plugins(configuration: Configuration):
+        from importlib import import_module
+        default_plugins = ['laz.plugins.jinja']
+        configured_plugins = configuration.data.get('plugins', [])
+        plugins = default_plugins + configured_plugins
+        for import_path in plugins:
+            import_module(import_path)
+
+    @staticmethod
+    def before_all(configuration: Configuration):
+        log.debug(f'Running before_all hooks')
+        for Plugin in PLUGINS:
+            try:
+                plugin = Plugin(configuration)
+                plugin.before_all()
+            except NotImplementedError:
+                pass
+
+    @staticmethod
+    def before_target(target: Target):
+        log.debug(f'Running before_target hooks')
+        for Plugin in PLUGINS:
+            try:
+                plugin = Plugin(target)
+                plugin.before_target()
+            except NotImplementedError:
+                pass
+
+    @staticmethod
+    def after_target(target: Target):
+        log.debug(f'Running after_target hooks')
+        for Plugin in PLUGINS:
+            try:
+                plugin = Plugin(target)
+                plugin.after_target()
+            except NotImplementedError:
+                pass
+
+    @staticmethod
+    def after_all(configuration: Configuration):
+        log.debug(f'Running after_all hooks')
+        for Plugin in PLUGINS:
+            try:
+                plugin = Plugin(configuration)
+                plugin.after_all()
+            except NotImplementedError:
+                pass

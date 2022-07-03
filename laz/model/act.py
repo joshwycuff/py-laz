@@ -6,13 +6,11 @@ from laz.utils.errors import LazValueError
 from laz.utils.contexts import in_dir
 from laz.model.action import Action
 from laz.model.target import Target
-from laz.utils.templates import evaluate
 
 
 class Act:
 
     def __init__(self, target: Target, action: Action):
-        target.push(evaluate(target.data))
         self.target = target
         self.action = action
 

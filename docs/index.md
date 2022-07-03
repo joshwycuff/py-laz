@@ -18,4 +18,4 @@ laz version
 
 ## Documentation
 
-https://joshwycuff.github.io/py-laz/
+[https://joshwycuff.github.io/py-laz/](https://joshwycuff.github.io/py-laz/)

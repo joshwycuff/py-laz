@@ -8,9 +8,17 @@ from jinja2 import Template
 # internal
 from laz.utils.errors import LazTypeError
 from laz.utils.types import AtomicData, Data, DictData, ListData
+from laz.plugins.plugin import Plugin
 
 
-def evaluate(data: Data, variables: Opt[DictData] = None) -> Data:
+class JinjaPlugin(Plugin):
+
+    def before_target(self):
+
+        self.context.push(_evaluate(self.context.data))
+
+
+def _evaluate(data: Data, variables: Opt[DictData] = None) -> Data:
     if variables is None and isinstance(data, dict):
         variables = data
     data = deepcopy(data)

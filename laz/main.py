@@ -33,6 +33,11 @@ def _subcommand() -> Opt[str]:
 
 
 if __name__ == '__main__':
-    cmd = 'laz version'
-    sys.argv = cmd.split(' ')
+    sys.argv = [
+        'laz',
+        '-vvv',
+        'pqr/dev',
+        'echo',
+        '{{ target.name }}',
+    ]
     main()
