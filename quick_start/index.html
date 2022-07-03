@@ -251,8 +251,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#template-expressions" class="md-nav__link">
-    Template Expressions
+  <a href="#jinja-variables" class="md-nav__link">
+    Jinja Variables
   </a>
   
 </li>
@@ -340,6 +340,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        Roadmap
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -388,8 +403,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#template-expressions" class="md-nav__link">
-    Template Expressions
+  <a href="#jinja-variables" class="md-nav__link">
+    Jinja Variables
   </a>
   
 </li>
@@ -462,16 +477,16 @@ thing 2
 <pre><code class="language-shell">$ laz dev
 i am the default action
 </code></pre>
-<h2 id="template-expressions">Template Expressions</h2>
+<h2 id="jinja-variables">Jinja Variables</h2>
 <p>Laz uses <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a> to provide access to the entire
-configuration context during the evaluation of template expressions.</p>
-<p>For example, if you want to print out the name of the current configuration file:</p>
-<pre><code class="language-yaml">name: abc
+configuration context during the evaluation of Jinja variables.</p>
+<p>For example, if you want to print out an arbitrary configuration field:</p>
+<pre><code class="language-yaml">abc: xyz
 target:
   dev:
 </code></pre>
-<pre><code class="language-shell">$ laz dev echo &quot;{{ name }}&quot;
-abc
+<pre><code class="language-shell">$ laz dev echo &quot;{{ abc }}&quot;
+xyz
 </code></pre>
 <p>There are other special values added to the configuration dynamically such as the name of the
 current target.</p>
