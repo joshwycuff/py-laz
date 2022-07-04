@@ -35,6 +35,8 @@ class Action:
 
     @classmethod
     def new(cls, context: Union[Configuration, Target], run_data: Data) -> Action:
+        if cls.__name__ != 'Action':
+            return cls(context, run_data)
         for action_type in cls.action_types:
             if action_type.is_handler(context, run_data):
                 return action_type.new(context, run_data)
