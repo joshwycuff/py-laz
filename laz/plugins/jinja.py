@@ -14,8 +14,8 @@ from laz.plugins.plugin import Plugin
 class JinjaPlugin(Plugin):
 
     def before_target(self):
-
-        self.context.push(_evaluate(self.context.data))
+        evaluated = _evaluate(self.context.data)
+        self.context.replace(evaluated)
 
 
 def _evaluate(data: Data, variables: Opt[DictData] = None) -> Data:
@@ -50,8 +50,14 @@ def _expand_list(data: ListData, variables: DictData) -> ListData:
 
 def _expand_atomics(data: AtomicData, variables: DictData) -> AtomicData:
     if isinstance(data, str):
-        template = Template(data)
-        rendered = template.render(**variables)
+        previous = data
+        while True:
+            template = Template(previous)
+            rendered = template.render(**variables)
+            if rendered == previous:
+                break
+            else:
+                previous = rendered
         return rendered
     else:
         return data

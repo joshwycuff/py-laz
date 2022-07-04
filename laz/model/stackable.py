@@ -20,3 +20,7 @@ class Stackable:
 
     def pop(self):
         self.data = self._stack.pop()
+
+    def replace(self, data: DictData):
+        self._stack[-1] = data
+        self.data = data

@@ -39,6 +39,7 @@ class Runner:
         self.before_all(self.root_node.configuration)
         targets = self.resolve()
         for target in targets:
+            log.debug(f'Running target {target.id}')
             with in_dir(target.data['dirpath']):
                 self.before_target(target)
                 args = ' '.join(target.data['args'])
