@@ -72,6 +72,7 @@ class AwsAction(Action):
             log.error(str(aws))
             log.error(str(response))
             raise LazError(f'AWS action failed')
+        return response
 
     @classmethod
     def is_handler(cls, context: Union[Configuration, Target], run_data: Data) -> bool:

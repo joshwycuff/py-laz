@@ -19,6 +19,10 @@ class Runner:
 
     def __init__(self, root_node: Node, cli_args: argparse.Namespace, args: List[str]):
         self.root_node = root_node
+        config = self.root_node.configuration.data.get('laz') or {}
+        self.error_on_no_targets = config.get('error_on_no_targets', False)
+        # TODO: continue_on_error flag
+        # self.continue_on_error = config.get('continue_on_error', False)
         self.cli_args = cli_args
         self.path = Path(args[0])
         self.args = args[1:]
@@ -38,6 +42,13 @@ class Runner:
         self.load_plugins(self.root_node.configuration)
         self.before_all(self.root_node.configuration)
         targets = self.resolve()
+        if len(targets) == 0:
+            msg = 'Given path resolved to zero targets'
+            if self.error_on_no_targets:
+                log.error(msg)
+                exit(1)
+            else:
+                log.warning(msg)
         for target in targets:
             log.debug(f'Running target {target.id}')
             with in_dir(target.data['dirpath']):

@@ -12,7 +12,7 @@ targets:
   dev:
 actions:
   default: echo default
-  example: echo example
+  hello: echo hello
 ```
 
 The above configuration file defines a few different things:
@@ -20,10 +20,11 @@ The above configuration file defines a few different things:
 - An environment variable named `ENV_VAR` with the value `value` to be exposed to all commands run
   by Laz.
 - Two targets: `prod` and `dev`.
-- Two defined actions, `default` and `example`. They simply invoke shell which echo "default" and "
+- Two defined actions, `default` and `example`. They simply invoke shells which echo "default" and "
   example", respectively.
 
-Note that nothing is stopping you from storing additional information in other top-level keys.
+Note that nothing is stopping you from storing additional information in other top-level keys. This
+is useful for plugins.
 
 ## Targets
 
@@ -52,7 +53,15 @@ hello
 
 ## Actions
 
-If you have a set of commands that you run often, you can codify them as an action:
+You can also codify commands as actions and refer to them from the cli. The previous configuration
+example contains an action called `hello` that also echos "hello".
+
+```shell
+$ laz dev hello
+hello
+```
+
+If you have a set of commands that you run often, you can codify them as an action as well.
 
 ```yaml
 targets:
@@ -135,11 +144,3 @@ prod
 after target
 after all
 ```
-
-## Plugins
-
-TODO
-
-## Sub-Projects
-
-TODO

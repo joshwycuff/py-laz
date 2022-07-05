@@ -162,7 +162,7 @@ class ShellAction(Action):
     def run(self):
         env = {
             **os.environ,
-            **self.context.data.get('env', {}),
+            **(self.context.data.get('env') or {}),
         }
         if self.run_data.get('capture'):
             type_str = self.run_data.get('type', 'str')

@@ -6,8 +6,8 @@ nav:
   - index.md
   - quick_start.md
   - concepts.md
+  - advanced.md
   - configuration.md
   - actions.md
   - plugins.md
   - cli.md
-  - roadmap.md
