@@ -7,7 +7,11 @@ nav:
   - advanced.md
   - configuration.md
   - actions.md
-  - plugins.md
+  - Plugins:
+    - plugins/index.md
+    - plugins/jinja.md
+    - plugins/aws.md
+    - plugins/terraform.md
   - cli.md
 theme:
   name: material
