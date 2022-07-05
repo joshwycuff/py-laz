@@ -1,14 +1,19 @@
 # std
 from copy import deepcopy
+import json
 from typing import Optional as Opt
 
 # external
-from jinja2 import Template
+from jinja2 import Environment, Template
 
 # internal
 from laz.utils.errors import LazTypeError
 from laz.utils.types import AtomicData, Data, DictData, ListData
 from laz.plugins.plugin import Plugin
+
+# jinja environment
+env = Environment()
+env.filters['jsonify'] = json.dumps
 
 
 class JinjaPlugin(Plugin):
@@ -52,7 +57,7 @@ def _expand_atomics(data: AtomicData, variables: DictData) -> AtomicData:
     if isinstance(data, str):
         previous = data
         while True:
-            template = Template(previous)
+            template = env.from_string(previous)
             rendered = template.render(**variables)
             if rendered == previous:
                 break

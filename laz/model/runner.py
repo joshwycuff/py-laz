@@ -13,6 +13,7 @@ from laz.model.target import Target
 from laz.model.act import Act
 from laz.model.action import Action
 from laz.plugins.plugin import PLUGINS
+from laz.plugins.defaults import DEFAULT_PLUGINS
 
 
 class Runner:
@@ -62,9 +63,8 @@ class Runner:
     @staticmethod
     def load_plugins(configuration: Configuration):
         from importlib import import_module
-        default_plugins = ['laz.plugins.jinja']
         configured_plugins = configuration.data.get('plugins', [])
-        plugins = default_plugins + configured_plugins
+        plugins = DEFAULT_PLUGINS + configured_plugins
         for import_path in plugins:
             import_module(import_path)
 

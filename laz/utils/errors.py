@@ -12,3 +12,6 @@ class LazTypeError(LazError, TypeError):
 
 class LazRuntimeError(LazError, RuntimeError):
     pass
+
+class LazActionError(LazRuntimeError):
+    pass
