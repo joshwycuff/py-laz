@@ -4,7 +4,7 @@ import json
 from typing import Optional as Opt
 
 # external
-from jinja2 import Environment, Template
+from jinja2 import Environment
 
 # internal
 from laz.utils.errors import LazTypeError
