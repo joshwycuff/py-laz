@@ -14,6 +14,7 @@ from laz.model.act import Act
 from laz.model.action import Action
 from laz.plugins.plugin import PLUGINS
 from laz.plugins.defaults import DEFAULT_PLUGINS
+from laz.utils.prodict import prodictify
 
 
 class Runner:
@@ -51,14 +52,17 @@ class Runner:
             else:
                 log.warning(msg)
         for target in targets:
-            log.debug(f'Running target {target.id}')
-            with in_dir(target.data['dirpath']):
-                self.before_target(target)
-                args = ' '.join(target.data['args'])
-                act = Act.new(target, args=args)
-                act.act()
-                self.after_target(target)
+            self._run_target(target)
         self.after_all(self.root_node.configuration)
+
+    def _run_target(self, target: Target):
+        log.debug(f'Running target {target.id}')
+        with in_dir(target.data['dirpath']):
+            self.before_target(target)
+            args = ' '.join(target.data['args'])
+            act = Act.new(target, args=args)
+            act.act()
+            self.after_target(target)
 
     @staticmethod
     def load_plugins(configuration: Configuration):

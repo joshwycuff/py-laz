@@ -1,6 +1,8 @@
 # std
 from copy import deepcopy
-import itertools
+
+# external
+from prodict import Prodict
 
 # internal
 from laz.utils.types import AtomicData, ListData, DictData, Data
@@ -14,7 +16,7 @@ def merge(left: Data, right: Data) -> Data:
 
 
 def _merge(left: Data, right: Data) -> Data:
-    if isinstance(left, dict) and isinstance(right, dict):
+    if isinstance(left, (dict, Prodict)) and isinstance(right, (dict, Prodict)):
         return _merge_dicts(left, right)
     elif isinstance(left, list) and isinstance(right, list):
         return _merge_lists(left, right)

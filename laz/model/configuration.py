@@ -10,6 +10,7 @@ from yaml.loader import SafeLoader
 # internal
 from laz.model.base import BaseObject
 from laz.model.target import Target
+from laz.utils.prodict import prodictify
 
 
 class Configuration(BaseObject):
@@ -31,7 +32,7 @@ class Configuration(BaseObject):
 
     @classmethod
     def deserialize(cls, id: str, serialized: str) -> Configuration:
-        data = yaml.load(serialized, Loader=SafeLoader) or {}
+        data = prodictify(yaml.load(serialized, Loader=SafeLoader) or {})
         if 'env' in data:
             if data['env'] is None:
                 data['env'] = {}
