@@ -527,13 +527,19 @@ targets:
   prod:
   qa:
 </code></pre>
-<p>In the above project, if you wanted to run a command against the dev target of sub-project-1, you would run the following:</p>
+<p>In the above project, if you wanted to run a command against the dev target of sub-project-1, you
+would run the following:</p>
 <pre><code class="language-shell">$ laz sub-project-1/dev echo '$prop'
 y
 </code></pre>
 <p>Or you could run a command against every dev target:</p>
 <pre><code class="language-shell">$ laz dev echo '{{ name }}' '$prop'
-scratch x
+project-root x
+sub-project-1 y
+sub-project-2 x
+</code></pre>
+<p>Or you could run a command against only sub-project dev targets:</p>
+<pre><code class="language-shell">$ laz &quot;*/dev&quot; echo '{{ name }}' '$prop'
 sub-project-1 y
 sub-project-2 x
 </code></pre>
