@@ -66,6 +66,9 @@ dev
 
 ### Error when path resolves to no targets
 
+By default, nothing happens if the given path does not resolve to any defined targets. If the
+desired behavior is to error, this can be configured.
+
 ```yaml
 laz:
   error_on_no_targets: true  # defaults to false
