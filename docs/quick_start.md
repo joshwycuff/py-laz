@@ -51,6 +51,8 @@ hello
 hello
 ```
 
+The above command ran `echo hello` against both the `dev` and `prod` targets.
+
 ## Actions
 
 You can also codify commands as actions and refer to them from the cli. The previous configuration

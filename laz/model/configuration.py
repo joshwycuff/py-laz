@@ -1,5 +1,6 @@
 # std
 from __future__ import annotations
+from copy import deepcopy
 import os
 from typing import List
 
@@ -11,9 +12,14 @@ from yaml.loader import SafeLoader
 from laz.model.base import BaseObject
 from laz.model.target import Target
 from laz.utils.prodict import prodictify
+from laz.utils.types import Data
 
 
 class Configuration(BaseObject):
+
+    def __init__(self, id: str, **data: Data):
+        super().__init__(id, **deepcopy(DEFAULT_CONFIGURATION))
+        self.push(data)
 
     @property
     def filepath(self):
@@ -33,18 +39,21 @@ class Configuration(BaseObject):
     @classmethod
     def deserialize(cls, id: str, serialized: str) -> Configuration:
         data = prodictify(yaml.load(serialized, Loader=SafeLoader) or {})
-        if 'env' in data:
-            if data['env'] is None:
-                data['env'] = {}
-            assert isinstance(data['env'], dict)
-            data['env'] = {k: str(v) for k, v in data['env'].items()}
-        if data.get('laz') is None:
-            data['laz'] = {}
-        data['laz']['default_target'] = data['laz'].get('default_target', 'default')
-        data['laz']['error_on_no_targets'] = data['laz'].get('error_on_no_targets', False)
         return cls(id, **data)
 
     @classmethod
     def load(cls, filepath: str) -> Configuration:
         with open(filepath, 'r') as fh:
             return Configuration.deserialize(filepath, fh.read())
+
+
+DEFAULT_CONFIGURATION = {
+    'laz': {
+        'default_action': 'default',
+        'default_target': 'default',
+        'error_on_no_targets': False,
+    },
+    'env': {},
+    'targets': {},
+    'actions': {},
+}
