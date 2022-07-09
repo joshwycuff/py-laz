@@ -296,9 +296,74 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Configuration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Configuration
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#targets" class="md-nav__link">
+    targets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    env
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laz" class="md-nav__link">
+    laz
+  </a>
+  
+    <nav class="md-nav" aria-label="laz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-target" class="md-nav__link">
+    Default Target
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-when-path-resolves-to-no-targets" class="md-nav__link">
+    Error when path resolves to no targets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -456,6 +521,55 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#targets" class="md-nav__link">
+    targets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    env
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laz" class="md-nav__link">
+    laz
+  </a>
+  
+    <nav class="md-nav" aria-label="laz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-target" class="md-nav__link">
+    Default Target
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-when-path-resolves-to-no-targets" class="md-nav__link">
+    Error when path resolves to no targets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -469,7 +583,55 @@
 
 
 <h1 id="configuration">Configuration</h1>
-<p>TODO</p>
+<h2 id="targets">targets</h2>
+<p>Configure targets.</p>
+<pre><code class="language-yaml">targets:
+  dev:
+</code></pre>
+<pre><code class="language-shell">$ laz dev echo '{{ target.name }}'
+dev
+</code></pre>
+<p>A target's configuration also overrides the parent configuration if provided.</p>
+<pre><code class="language-yaml">property: x
+targets:
+  dev:
+  prod:
+    property: y
+</code></pre>
+<pre><code class="language-shell">$ laz &quot;*&quot; echo '{{ target.name }}' '{{ property }}'
+dev x
+prod y
+</code></pre>
+<h2 id="env">env</h2>
+<p>Configure environment variables.</p>
+<pre><code class="language-yaml">env:
+  name: value
+targets:
+  dev:
+</code></pre>
+<pre><code class="language-shell">$ laz dev echo '$name'
+value
+</code></pre>
+<h2 id="laz">laz</h2>
+<p>Configure Laz behavior.</p>
+<h3 id="default-target">Default Target</h3>
+<pre><code class="language-yaml">laz:
+  default_target: dev  # defaults to &quot;default&quot;
+targets:
+  dev:
+</code></pre>
+<pre><code class="language-shell">$ laz / echo '{{ target.name }}'
+dev
+</code></pre>
+<h3 id="error-when-path-resolves-to-no-targets">Error when path resolves to no targets</h3>
+<pre><code class="language-yaml">laz:
+  error_on_no_targets: true  # defaults to false
+targets:
+  dev:
+</code></pre>
+<pre><code class="language-shell">$ laz not-a-target echo '{{ target.name }}'
+[ERROR] Given path resolved to zero targets
+</code></pre>
 
   <hr>
 <div class="md-source-file">
