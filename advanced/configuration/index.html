@@ -624,6 +624,8 @@ targets:
 dev
 </code></pre>
 <h3 id="error-when-path-resolves-to-no-targets">Error when path resolves to no targets</h3>
+<p>By default, nothing happens if the given path does not resolve to any defined targets. If the
+desired behavior is to error, this can be configured.</p>
 <pre><code class="language-yaml">laz:
   error_on_no_targets: true  # defaults to false
 targets:
