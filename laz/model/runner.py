@@ -22,11 +22,11 @@ class Runner:
     def __init__(self, root_node: Node, cli_args: argparse.Namespace, args: List[str]):
         self.root_node = root_node
         config = self.root_node.configuration.data.get('laz') or {}
-        self.error_on_no_targets = config.get('error_on_no_targets', False)
+        self.error_on_no_targets = config['error_on_no_targets']
         # TODO: continue_on_error flag
         # self.continue_on_error = config.get('continue_on_error', False)
         self.cli_args = cli_args
-        self.path = Path(args[0])
+        self.path = Path(args[0], root_node.configuration.data['laz']['default_target'])
         self.args = args[1:]
         self.root_node.configuration.push({
             'path': args[0],

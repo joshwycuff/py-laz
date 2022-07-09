@@ -38,6 +38,10 @@ class Configuration(BaseObject):
                 data['env'] = {}
             assert isinstance(data['env'], dict)
             data['env'] = {k: str(v) for k, v in data['env'].items()}
+        if data.get('laz') is None:
+            data['laz'] = {}
+        data['laz']['default_target'] = data['laz'].get('default_target', 'default')
+        data['laz']['error_on_no_targets'] = data['laz'].get('error_on_no_targets', False)
         return cls(id, **data)
 
     @classmethod

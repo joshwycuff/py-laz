@@ -100,7 +100,7 @@ sub-project-2 x
 Or you could run a command against only sub-project dev targets:
 
 ```shell
-$ laz "*/dev" echo '{{ name }}' '$prop'
+$ laz '*/dev' echo '{{ name }}' '$prop'
 sub-project-1 y
 sub-project-2 x
 ```
