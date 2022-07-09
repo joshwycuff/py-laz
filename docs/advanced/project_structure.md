@@ -80,7 +80,8 @@ targets:
   qa:
 ```
 
-In the above project, if you wanted to run a command against the dev target of sub-project-1, you would run the following:
+In the above project, if you wanted to run a command against the dev target of sub-project-1, you
+would run the following:
 
 ```shell
 $ laz sub-project-1/dev echo '$prop'
@@ -91,7 +92,15 @@ Or you could run a command against every dev target:
 
 ```shell
 $ laz dev echo '{{ name }}' '$prop'
-scratch x
+project-root x
+sub-project-1 y
+sub-project-2 x
+```
+
+Or you could run a command against only sub-project dev targets:
+
+```shell
+$ laz "*/dev" echo '{{ name }}' '$prop'
 sub-project-1 y
 sub-project-2 x
 ```
