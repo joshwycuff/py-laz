@@ -18,12 +18,7 @@ def get_target_configuration(node: Node, target_name: str) -> Target:
 
 def get_node_configuration(node: Node) -> Configuration:
     nodes = node.root_path()
-    data = {
-        'dirpath': os.path.dirname(node.configuration.filepath),
-        'filepath': node.configuration.filepath,
-        'name': node.configuration.name,
-    }
-    conf = Configuration(node.configuration.id, **data)
+    conf = Configuration(node.configuration.id)
     for node in nodes:
         conf.push(node.configuration.data)
     return conf

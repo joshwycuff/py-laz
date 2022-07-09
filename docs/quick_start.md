@@ -2,7 +2,8 @@
 
 ## Configuration File
 
-A basic example configuration file may look like the following:
+Laz configuration files are named laz.yml. A basic example configuration file may look like the
+following:
 
 ```yaml
 env:
@@ -120,8 +121,13 @@ configuration file (which is the same as the name of the folder) and the name of
 current target.
 
 ```shell
-$ laz dev echo "{{ name }}"
+$ laz dev echo "{{ config.name }}"
 project-a
+```
+
+```shell
+$ laz dev echo "{{ config.filepath }}"
+~/projects/project-a/laz.yml
 ```
 
 ```shell

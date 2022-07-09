@@ -12,7 +12,7 @@ from laz.utils.funcs import compact, flatten
 
 def load(dirpath: str = '.') -> Node:
     rootpath = _find_rootpath(dirpath)
-    root_node = _build_tree(rootpath)
+    root_node = _build_tree(rootpath, root=True)
     return root_node
 
 
@@ -31,11 +31,11 @@ def _find_rootpath(dirpath: str) -> str:
     return rootpath
 
 
-def _build_tree(dirpath: str) -> Opt[Union[Node, List[Node]]]:
+def _build_tree(dirpath: str, root: bool = False) -> Opt[Union[Node, List[Node]]]:
     filepath = os.path.join(dirpath, 'laz.yml')
     if os.path.isfile(filepath):
         log.debug(f'laz.yml found: {filepath}')
-        node = Node(Configuration.load(filepath))
+        node = Node(Configuration.load(filepath, root=root))
         children = compact(flatten([_build_tree(d) for d in _listdirs(dirpath)]))
         node.add_children(children)
         return node

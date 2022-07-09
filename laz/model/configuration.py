@@ -1,6 +1,5 @@
 # std
 from __future__ import annotations
-from copy import deepcopy
 import os
 from typing import List
 
@@ -17,8 +16,13 @@ from laz.utils.types import Data
 
 class Configuration(BaseObject):
 
-    def __init__(self, id: str, **data: Data):
-        super().__init__(id, **deepcopy(DEFAULT_CONFIGURATION))
+    def __init__(self, id: str, root: bool = False, **data: Data):
+        super().__init__(id)
+        if root:
+            self.push(DEFAULT_CONFIGURATION_DATA)
+        self.push({'config': {
+            'name': self.name, 'filepath': self.filepath, 'dirpath': self.dirpath, 'root': root,
+        }})
         self.push(data)
 
     @property
@@ -26,8 +30,12 @@ class Configuration(BaseObject):
         return self.id
 
     @property
+    def dirpath(self):
+        return os.path.dirname(self.filepath)
+
+    @property
     def name(self):
-        return os.path.basename(os.path.dirname(self.filepath))
+        return os.path.basename(self.dirpath)
 
     @property
     def target_names(self) -> List[str]:
@@ -37,17 +45,18 @@ class Configuration(BaseObject):
         return Target(name, **self.data.get('targets', {}).get(name, {}) or {})
 
     @classmethod
-    def deserialize(cls, id: str, serialized: str) -> Configuration:
+    def deserialize(cls, id: str, serialized: str, **kwargs: Data) -> Configuration:
         data = prodictify(yaml.load(serialized, Loader=SafeLoader) or {})
-        return cls(id, **data)
+        return cls(id, kwargs.pop('root', False), **data)
 
     @classmethod
-    def load(cls, filepath: str) -> Configuration:
+    def load(cls, filepath: str, root: bool = False) -> Configuration:
         with open(filepath, 'r') as fh:
-            return Configuration.deserialize(filepath, fh.read())
+            return Configuration.deserialize(filepath, fh.read(), root=root)
 
 
-DEFAULT_CONFIGURATION = {
+DEFAULT_CONFIGURATION_DATA = {
+    'plugins': [],
     'laz': {
         'default_action': 'default',
         'default_target': 'default',

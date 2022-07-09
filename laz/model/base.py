@@ -25,6 +25,6 @@ class BaseObject(Serializable, Stackable):
         return yaml.dump(self.data)
 
     @classmethod
-    def deserialize(cls, id: str, serialized: str) -> BaseObject:
+    def deserialize(cls, id: str, serialized: str, **kwargs: Data) -> BaseObject:
         data = yaml.load(serialized, Loader=SafeLoader) or {}
         return cls(id, **data)

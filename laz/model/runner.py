@@ -14,7 +14,6 @@ from laz.model.act import Act
 from laz.model.action import Action
 from laz.plugins.plugin import PLUGINS
 from laz.plugins.defaults import DEFAULT_PLUGINS
-from laz.utils.prodict import prodictify
 
 
 class Runner:
@@ -57,9 +56,14 @@ class Runner:
 
     def _run_target(self, target: Target):
         log.debug(f'Running target {target.id}')
-        with in_dir(target.data['dirpath']):
+        with in_dir(target.data['config']['dirpath']):
+            args = target.data['args']
+            if len(args) == 0:
+                default_action = target.data['laz']['default_action']
+                log.debug(f'Running default action: {default_action}')
+                args += [default_action]
             self.before_target(target)
-            args = ' '.join(target.data['args'])
+            args = ' '.join(args)
             act = Act.new(target, args=args)
             act.act()
             self.after_target(target)

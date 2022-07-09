@@ -64,6 +64,39 @@ $ laz / echo '{{ target.name }}'
 dev
 ```
 
+### Default Action
+
+```yaml
+laz:
+  default_action: hi  # defaults to "default"
+targets:
+  dev:
+actions:
+  hi: echo hi
+```
+
+```shell
+$ laz dev hi
+hi
+```
+
+### Combining default target and action
+
+```yaml
+laz:
+  default_target: dev
+  default_action: hello
+targets:
+  dev:
+actions:
+  hello: echo hello, '{{ target.name }}'
+```
+
+```shell
+$ laz /
+hello, dev
+```
+
 ### Error when path resolves to no targets
 
 By default, nothing happens if the given path does not resolve to any defined targets. If the
