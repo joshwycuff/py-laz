@@ -633,7 +633,8 @@ i am the default action
 <p>Laz uses <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a> to provide access to the entire
 configuration context during the evaluation of Jinja variables.</p>
 <p>For example, if you want to print out an arbitrary configuration field:</p>
-<pre><code class="language-yaml">abc: def
+<pre><code class="language-yaml"># located in ~/projects/project-a
+abc: def
 ghi:
   jkl: mno
 target:
@@ -642,11 +643,15 @@ target:
 <pre><code class="language-shell">$ laz dev echo &quot;{{ abc }}&quot;
 def
 </code></pre>
-<pre><code class="language-shell">$ laz dev echo &quot;{{ fhi.jkl }}&quot;
+<pre><code class="language-shell">$ laz dev echo &quot;{{ ghi.jkl }}&quot;
 mno
 </code></pre>
 <p>There are other special values added to the configuration dynamically such as the name of the
+configuration file (which is the same as the name of the folder) and the name of the
 current target.</p>
+<pre><code class="language-shell">$ laz dev echo &quot;{{ name }}&quot;
+project-a
+</code></pre>
 <pre><code class="language-shell">$ laz dev echo &quot;{{ target.name }}&quot;
 dev
 </code></pre>

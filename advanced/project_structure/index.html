@@ -473,14 +473,70 @@
 can have multiple directories with each of them having 0 or 1 laz.yml files except for the top level
 which must have 1. Lower-level directories containing a laz.yml file are called sub-projects.</p>
 <p>A single-level Laz project:</p>
-<pre><code>top-level/
-laz.yml
+<pre><code>project-root/
+├─ laz.yml
+
 </code></pre>
 <p>A multi-level Laz project:</p>
-<pre><code>
+<pre><code>project-root/
+├─ sub-project-1/
+│  ├─ laz.yml
+├─ sub-project-2/
+│  ├─ laz.yml
+├─ not-laz-sub-project/
+├─ laz.yml
 </code></pre>
 <p>A laz.yml encapsulates the configuration for a directory. It also inherits and/or overrides the
 configurations found in parent directories within the same project.</p>
+<p>Let's say the configuration files have the below contents.</p>
+<pre><code class="language-yaml"># project-root/laz.yml
+env:
+  prop: x
+targets:
+  dev:
+  prod:
+</code></pre>
+<pre><code class="language-yaml"># project-root/sub-project-1/laz.yml
+env:
+  prop: y
+</code></pre>
+<pre><code class="language-yaml"># project-root/sub-project-2/laz.yml
+targets:
+  qa:
+</code></pre>
+<p>The effective configurations after inheritance and overrides are:</p>
+<pre><code class="language-yaml"># project-root/laz.yml
+env:
+  prop: x
+targets:
+  dev:
+  prod:
+</code></pre>
+<pre><code class="language-yaml"># project-root/sub-project-1/laz.yml
+env:
+  prop: y
+targets:
+  dev:
+  prod:
+</code></pre>
+<pre><code class="language-yaml"># project-root/sub-project-2/laz.yml
+env:
+  prop: x
+targets:
+  dev:
+  prod:
+  qa:
+</code></pre>
+<p>In the above project, if you wanted to run a command against the dev target of sub-project-1, you would run the following:</p>
+<pre><code class="language-shell">$ laz sub-project-1/dev echo '$prop'
+y
+</code></pre>
+<p>Or you could run a command against every dev target:</p>
+<pre><code class="language-shell">$ laz dev echo '{{ name }}' '$prop'
+scratch x
+sub-project-1 y
+sub-project-2 x
+</code></pre>
 
   <hr>
 <div class="md-source-file">
