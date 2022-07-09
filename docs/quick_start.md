@@ -61,7 +61,8 @@ $ laz dev hello
 hello
 ```
 
-If you have a set of commands that you run often, you can codify them as an action as well.
+Actions can also have sub-actions in the form of a list. If you have a set of commands that you run
+often, you can codify them as an action as well.
 
 ```yaml
 targets:
@@ -94,14 +95,21 @@ configuration context during the evaluation of Jinja variables.
 For example, if you want to print out an arbitrary configuration field:
 
 ```yaml
-abc: xyz
+abc: def
+ghi:
+  jkl: mno
 target:
   dev:
 ```
 
 ```shell
 $ laz dev echo "{{ abc }}"
-xyz
+def
+```
+
+```shell
+$ laz dev echo "{{ fhi.jkl }}"
+mno
 ```
 
 There are other special values added to the configuration dynamically such as the name of the

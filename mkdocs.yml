@@ -3,10 +3,10 @@ site_url: https://joshwycuff.github.io/py-laz
 nav:
   - index.md
   - quick_start.md
-  - concepts.md
-  - advanced.md
-  - configuration.md
-  - actions.md
+  - Advanced:
+    - advanced/project_structure.md
+    - advanced/configuration.md
+    - advanced/actions.md
   - Plugins:
     - plugins/index.md
     - plugins/jinja.md

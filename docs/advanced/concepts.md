@@ -2,19 +2,13 @@
 
 ## Project
 
-A Laz project consists of at least one directory containing a laz.yml configuration file. A project
-can have multiple directories with each of them having 0 or 1 laz.yml files except for the top level
-which must have 1. Lower-level directories containing a laz.yml file are called sub-projects.
+
 
 ## Configuration
 
-A laz.yml encapsulates the configuration for a directory. It also inherits and/or overrides the
-configurations found in parent directories within the same project.
+
 
 ### Inheritance
-
-Sub-projects "inherit" configuration from parent projects but will also overwrite configuration that
-they share.
 
 ## Action
 
