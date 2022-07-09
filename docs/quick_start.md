@@ -95,6 +95,7 @@ configuration context during the evaluation of Jinja variables.
 For example, if you want to print out an arbitrary configuration field:
 
 ```yaml
+# located in ~/projects/project-a
 abc: def
 ghi:
   jkl: mno
@@ -108,12 +109,18 @@ def
 ```
 
 ```shell
-$ laz dev echo "{{ fhi.jkl }}"
+$ laz dev echo "{{ ghi.jkl }}"
 mno
 ```
 
 There are other special values added to the configuration dynamically such as the name of the
+configuration file (which is the same as the name of the folder) and the name of the
 current target.
+
+```shell
+$ laz dev echo "{{ name }}"
+project-a
+```
 
 ```shell
 $ laz dev echo "{{ target.name }}"
