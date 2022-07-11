@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "laz"
-version = "0.0.1a14"
+version = "0.0.1a15"
 description = "CLI tool to configure and run parameterized actions against targets."
 authors = ["Josh Wycuff <Josh.Wycuff@gmail.com>"]
 readme = "README.md"
