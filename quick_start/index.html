@@ -570,7 +570,8 @@
 
 <h1 id="quick-start">Quick Start</h1>
 <h2 id="configuration-file">Configuration File</h2>
-<p>A basic example configuration file may look like the following:</p>
+<p>Laz configuration files are named laz.yml. A basic example configuration file may look like the
+following:</p>
 <pre><code class="language-yaml">env:
   ENV_VAR: value
 targets:
@@ -650,8 +651,11 @@ mno
 <p>There are other special values added to the configuration dynamically such as the name of the
 configuration file (which is the same as the name of the folder) and the name of the
 current target.</p>
-<pre><code class="language-shell">$ laz dev echo &quot;{{ name }}&quot;
+<pre><code class="language-shell">$ laz dev echo &quot;{{ config.name }}&quot;
 project-a
+</code></pre>
+<pre><code class="language-shell">$ laz dev echo &quot;{{ config.filepath }}&quot;
+~/projects/project-a/laz.yml
 </code></pre>
 <pre><code class="language-shell">$ laz dev echo &quot;{{ target.name }}&quot;
 dev
@@ -690,11 +694,11 @@ after all
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 11, 2022</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2022</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 11, 2022</span>
       
     
   </small>

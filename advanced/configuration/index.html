@@ -350,6 +350,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#default-action" class="md-nav__link">
+    Default Action
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-default-target-and-action" class="md-nav__link">
+    Combining default target and action
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#error-when-path-resolves-to-no-targets" class="md-nav__link">
     Error when path resolves to no targets
   </a>
@@ -557,6 +571,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#default-action" class="md-nav__link">
+    Default Action
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-default-target-and-action" class="md-nav__link">
+    Combining default target and action
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#error-when-path-resolves-to-no-targets" class="md-nav__link">
     Error when path resolves to no targets
   </a>
@@ -623,6 +651,29 @@ targets:
 <pre><code class="language-shell">$ laz / echo '{{ target.name }}'
 dev
 </code></pre>
+<h3 id="default-action">Default Action</h3>
+<pre><code class="language-yaml">laz:
+  default_action: hi  # defaults to &quot;default&quot;
+targets:
+  dev:
+actions:
+  hi: echo hi
+</code></pre>
+<pre><code class="language-shell">$ laz dev hi
+hi
+</code></pre>
+<h3 id="combining-default-target-and-action">Combining default target and action</h3>
+<pre><code class="language-yaml">laz:
+  default_target: dev
+  default_action: hello
+targets:
+  dev:
+actions:
+  hello: echo hello, '{{ target.name }}'
+</code></pre>
+<pre><code class="language-shell">$ laz /
+hello, dev
+</code></pre>
 <h3 id="error-when-path-resolves-to-no-targets">Error when path resolves to no targets</h3>
 <p>By default, nothing happens if the given path does not resolve to any defined targets. If the
 desired behavior is to error, this can be configured.</p>
@@ -640,11 +691,11 @@ targets:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 11, 2022</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2022</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 11, 2022</span>
       
     
   </small>
