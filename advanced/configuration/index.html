@@ -343,6 +343,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#default-base-path" class="md-nav__link">
+    Default Base Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#default-target" class="md-nav__link">
     Default Target
   </a>
@@ -564,6 +571,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#default-base-path" class="md-nav__link">
+    Default Base Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#default-target" class="md-nav__link">
     Default Target
   </a>
@@ -642,13 +656,22 @@ value
 </code></pre>
 <h2 id="laz">laz</h2>
 <p>Configure Laz behavior.</p>
+<h3 id="default-base-path">Default Base Path</h3>
+<pre><code class="language-yaml">laz:
+  default_base_path: sub-project-1  # defaults to &quot;&quot;
+targets:
+  dev:
+</code></pre>
+<pre><code class="language-shell">$ laz dev echo test  # same as `laz sub-project-1/dev echo test`
+test
+</code></pre>
 <h3 id="default-target">Default Target</h3>
 <pre><code class="language-yaml">laz:
   default_target: dev  # defaults to &quot;default&quot;
 targets:
   dev:
 </code></pre>
-<pre><code class="language-shell">$ laz / echo '{{ target.name }}'
+<pre><code class="language-shell">$ laz / echo '{{ target.name }}'  # same as `laz /dev echo '{{ target.name }}'`
 dev
 </code></pre>
 <h3 id="default-action">Default Action</h3>
@@ -659,7 +682,7 @@ targets:
 actions:
   hi: echo hi
 </code></pre>
-<pre><code class="language-shell">$ laz dev hi
+<pre><code class="language-shell">$ laz dev
 hi
 </code></pre>
 <h3 id="combining-default-target-and-action">Combining default target and action</h3>
