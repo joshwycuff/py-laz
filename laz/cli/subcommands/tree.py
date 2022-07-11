@@ -28,7 +28,7 @@ def tree():
     SHOW_TARGETS = args.show_targets
     SHOW_PATHS = args.show_paths
     root = load()
-    print(root.configuration.name)
+    print(f'{root.configuration.name}/')
     if args.show_targets:
         _targets(root, '', len(root.children) == 0)
     for child in Iterator(root.children):

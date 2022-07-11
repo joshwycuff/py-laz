@@ -22,10 +22,8 @@ class Runner:
         self.root_node = root_node
         config = self.root_node.configuration.data.get('laz') or {}
         self.error_on_no_targets = config['error_on_no_targets']
-        # TODO: continue_on_error flag
-        # self.continue_on_error = config.get('continue_on_error', False)
         self.cli_args = cli_args
-        self.path = Path(args[0], root_node.configuration.data['laz']['default_target'])
+        self.path = Path(args[0], **root_node.configuration.data['laz'])
         self.args = args[1:]
         self.root_node.configuration.push({
             'path': args[0],

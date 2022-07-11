@@ -16,10 +16,9 @@ def root():
 
     cli_args, laz_args = _split_args()
     if len(laz_args) == 0:
-        raise LazRuntimeError('No path provided')
-    # elif len(laz_args) == 1:
-    #     log.debug('Running default action')
-    #     laz_args += ['default']
+        from laz.cli.subcommands.help import help
+        help()
+        exit(1)
 
     cli_args = parser.parse_args(cli_args)
     get_logger(verbosity=cli_args.verbose)

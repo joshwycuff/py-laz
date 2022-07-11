@@ -58,9 +58,12 @@ class Configuration(BaseObject):
 DEFAULT_CONFIGURATION_DATA = {
     'plugins': [],
     'laz': {
-        'default_action': 'default',
+        'default_base_path': '',
         'default_target': 'default',
+        'default_action': 'default',
         'error_on_no_targets': False,
+        'path_delimiter': '/',
+        # 'continue_on_error': False,  # TODO
     },
     'env': {},
     'targets': {},

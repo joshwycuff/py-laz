@@ -12,9 +12,9 @@ Global Options:
   -v (--verbose)     Increase verbosity of log messages
 
 Available Commands:
+  <path>             Configuration/Target path to run arguments against
   help               Display help message
   init               Initialize a directory with an example laz.yml
-  <path>             Configuration/Target path to run arguments against
   tree               Display tree structure of laz.yml files in current project
   version            Display current Laz package version
 

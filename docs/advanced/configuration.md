@@ -50,6 +50,20 @@ value
 
 Configure Laz behavior.
 
+### Default Base Path
+
+```yaml
+laz:
+  default_base_path: sub-project-1  # defaults to ""
+targets:
+  dev:
+```
+
+```shell
+$ laz dev echo test  # same as `laz sub-project-1/dev echo test`
+test
+```
+
 ### Default Target
 
 ```yaml
@@ -60,7 +74,7 @@ targets:
 ```
 
 ```shell
-$ laz / echo '{{ target.name }}'
+$ laz / echo '{{ target.name }}'  # same as `laz /dev echo '{{ target.name }}'`
 dev
 ```
 
@@ -76,7 +90,7 @@ actions:
 ```
 
 ```shell
-$ laz dev hi
+$ laz dev
 hi
 ```
 

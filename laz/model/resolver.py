@@ -42,4 +42,4 @@ class Resolver:
     def get_name_path(node: Node) -> str:
         nodes = node.root_path()
         names = [node.configuration.name for node in nodes]
-        return Path.sep.join(names + [''])
+        return '/'.join(names + [''])
