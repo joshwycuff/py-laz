@@ -59,9 +59,9 @@ class Runner:
                 default_action = target.data['laz']['default_action']
                 log.debug(f'Running default action: {default_action}')
                 args += [default_action]
+                target.data['args'] = args
             self.before_target(target)
-            args = ' '.join(args)
-            act = Act.new(target, args=args)
+            act = Act.new(target, args=' '.join(target.data['args']))
             act.act()
             self.after_target(target)
 

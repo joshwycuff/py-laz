@@ -24,8 +24,8 @@ The above configuration file defines a few different things:
 - Two defined actions, `default` and `example`. They simply invoke shells which echo "default" and "
   example", respectively.
 
-Note that nothing is stopping you from storing additional information in other top-level keys. This
-is useful for plugins.
+Note that nothing is stopping you from storing additional information in other unreserved top-level
+keys. This is useful for plugins.
 
 ## Targets
 
@@ -35,9 +35,9 @@ A typical Laz command looks like the following:
 laz <path> [<arg1>] ... [<argN>]
 ```
 
-A Laz command will not run if the given path does not resolve to defined targets. For example, to
-run a command against the dev target defined in the previous example configuration file, you would
-run something like:
+A Laz command will not run if the given path does not resolve to any defined targets. For example,
+to run a command against the dev target defined in the previous example configuration file, you
+would run something like:
 
 ```shell
 $ laz dev echo hello
