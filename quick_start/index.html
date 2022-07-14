@@ -589,15 +589,15 @@ actions:
 <li>Two defined actions, <code>default</code> and <code>example</code>. They simply invoke shells which echo "default" and "
   example", respectively.</li>
 </ul>
-<p>Note that nothing is stopping you from storing additional information in other top-level keys. This
-is useful for plugins.</p>
+<p>Note that nothing is stopping you from storing additional information in other unreserved top-level
+keys. This is useful for plugins.</p>
 <h2 id="targets">Targets</h2>
 <p>A typical Laz command looks like the following:</p>
 <pre><code class="language-shell">laz &lt;path&gt; [&lt;arg1&gt;] ... [&lt;argN&gt;]
 </code></pre>
-<p>A Laz command will not run if the given path does not resolve to defined targets. For example, to
-run a command against the dev target defined in the previous example configuration file, you would
-run something like:</p>
+<p>A Laz command will not run if the given path does not resolve to any defined targets. For example,
+to run a command against the dev target defined in the previous example configuration file, you
+would run something like:</p>
 <pre><code class="language-shell">$ laz dev echo hello
 hello
 </code></pre>

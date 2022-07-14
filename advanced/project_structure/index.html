@@ -472,11 +472,10 @@
 <p>A Laz project consists of at least one directory containing a laz.yml configuration file. A project
 can have multiple directories with each of them having 0 or 1 laz.yml files except for the top level
 which must have 1. Lower-level directories containing a laz.yml file are called sub-projects. There
-is no limit how deeply nested a laz project can be.</p>
+is no limit to how deeply nested a laz project can be.</p>
 <p>A single-level Laz project:</p>
 <pre><code>project-root/
 ├─ laz.yml
-
 </code></pre>
 <p>A multi-level Laz project:</p>
 <pre><code>project-root/
@@ -534,13 +533,13 @@ would run the following:</p>
 y
 </code></pre>
 <p>Or you could run a command against every dev target:</p>
-<pre><code class="language-shell">$ laz dev echo '{{ name }}' '$prop'
+<pre><code class="language-shell">$ laz dev echo '{{ config.name }}' '$prop'
 project-root x
 sub-project-1 y
 sub-project-2 x
 </code></pre>
 <p>Or you could run a command against only sub-project dev targets:</p>
-<pre><code class="language-shell">$ laz '*/dev' echo '{{ name }}' '$prop'
+<pre><code class="language-shell">$ laz '*/dev' echo '{{ config.name }}' '$prop'
 sub-project-1 y
 sub-project-2 x
 </code></pre>
