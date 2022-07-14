@@ -382,6 +382,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    plugins
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -437,6 +444,8 @@
         
           
         
+          
+        
       
       
         
@@ -467,6 +476,20 @@
     <li class="md-nav__item">
       <a href="../../plugins/jinja/" class="md-nav__link">
         Jinja Plugin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/alias/" class="md-nav__link">
+        Alias Plugin
       </a>
     </li>
   
@@ -610,6 +633,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    plugins
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -708,6 +738,15 @@ targets:
 <pre><code class="language-shell">$ laz not-a-target echo '{{ target.name }}'
 [ERROR] Given path resolved to zero targets
 </code></pre>
+<h2 id="plugins">plugins</h2>
+<p>Specify the import path of Laz plugins to be included at runtime.</p>
+<pre><code class="language-yaml">plugins:
+  - laz.plugins.aws
+  - laz.plugins.terraform
+targets:
+  dev:
+</code></pre>
+<p>Note that plugin configuration is only allowed in the top-level laz.yml configuration file.</p>
 
   <hr>
 <div class="md-source-file">

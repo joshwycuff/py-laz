@@ -46,6 +46,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://joshwycuff.github.io/py-laz/plugins/alias/</loc>
+         <lastmod>2022-07-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://joshwycuff.github.io/py-laz/plugins/aws/</loc>
          <lastmod>2022-07-14</lastmod>
          <changefreq>daily</changefreq>

@@ -408,6 +408,8 @@
         
           
         
+          
+        
       
       
         
@@ -438,6 +440,20 @@
     <li class="md-nav__item">
       <a href="../plugins/jinja/" class="md-nav__link">
         Jinja Plugin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/alias/" class="md-nav__link">
+        Alias Plugin
       </a>
     </li>
   
@@ -635,8 +651,7 @@ i am the default action
 <p>Laz uses <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a> to provide access to the entire
 configuration context during the evaluation of Jinja variables.</p>
 <p>For example, if you want to print out an arbitrary configuration field:</p>
-<pre><code class="language-yaml"># located in ~/projects/project-a
-abc: def
+<pre><code class="language-yaml">abc: def
 ghi:
   jkl: mno
 target:
@@ -648,18 +663,17 @@ def
 <pre><code class="language-shell">$ laz dev echo &quot;{{ ghi.jkl }}&quot;
 mno
 </code></pre>
-<p>There are other special values added to the configuration dynamically such as the name of the
-configuration file (which is the same as the name of the folder) and the name of the
-current target.</p>
-<pre><code class="language-shell">$ laz dev echo &quot;{{ config.name }}&quot;
-project-a
+<p>This is also a great way to keep your Laz
+configuration <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>.</p>
+<pre><code class="language-yaml">abc: &quot;{{ x }}&quot;
+def: &quot;{{ x }}&quot;
+target:
+  dev:
+x: annoyingly long repeated value
 </code></pre>
-<pre><code class="language-shell">$ laz dev echo &quot;{{ config.filepath }}&quot;
-~/projects/project-a/laz.yml
-</code></pre>
-<pre><code class="language-shell">$ laz dev echo &quot;{{ target.name }}&quot;
-dev
-</code></pre>
+<p>See the <a href="../plugins/jinja/">Jinja Plugin documentation</a> for more details.</p>
+<p>In cases where you have entire repeated objects (as opposed to simple string values), you may want
+to instead check out the <a href="../plugins/alias/">Alias Plugin documentation</a>.</p>
 <h2 id="hooks">Hooks</h2>
 <p>Hooks can be used to perform actions before or after certain points in the program. The built-in
 hooks that are available are:</p>
@@ -688,6 +702,7 @@ prod
 after target
 after all
 </code></pre>
+<p><a href="../plugins/">Plugins</a> can also provide additional functionality.</p>
 
   <hr>
 <div class="md-source-file">
