@@ -1,4 +1,5 @@
 # std
+import json
 import os
 from typing import Dict, Union
 
@@ -24,7 +25,7 @@ class AwsPlugin(Plugin):
         if aws_region is not None:
             env['AWS_DEFAULT_REGION'] = aws_region
         if env:
-            self.context.push({'env': env})
+            self.env(**env)
 
 
 class AwsAction(Action):
@@ -50,12 +51,11 @@ class AwsAction(Action):
         if status_code >= 300:
             raise LazError(f'Assume Role Error: HTTPStatusCode {status_code}')
         credentials = response['Credentials']
-        env = {
-            'AWS_ACCESS_KEY_ID': credentials['AccessKeyId'],
-            'AWS_SECRET_ACCESS_KEY': credentials['SecretAccessKey'],
-            'AWS_SESSION_TOKEN': credentials['SessionToken'],
-        }
-        self.context.push({'env': env})
+        self.env(
+            AWS_ACCESS_KEY_ID=credentials['AccessKeyId'],
+            AWS_SECRET_ACCESS_KEY=credentials['SecretAccessKey'],
+            AWS_SESSION_TOKEN=credentials['SessionToken'],
+        )
 
     def _arbitrary_aws_action(self):
         import boto3
@@ -67,11 +67,13 @@ class AwsAction(Action):
             client = boto3.client(service)
             method = getattr(client, subcommand)
             response = method(**kwargs)
-        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        response_metadata = response.pop('ResponseMetadata')
+        status_code = response_metadata['HTTPStatusCode']
         if status_code >= 300:
             log.error(str(aws))
             log.error(str(response))
             raise LazError(f'AWS action failed')
+        print(json.dumps(response, indent=2))
         return response
 
     @classmethod

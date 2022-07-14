@@ -32,6 +32,9 @@ class Plugin:
     def after_all(self):
         raise NotImplementedError
 
+    def env(self, **kwargs):
+        self.context.push({'env': kwargs})
+
 
 def log_method(method):
     class_name = method.__qualname__.split('.')[0]

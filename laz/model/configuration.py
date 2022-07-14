@@ -56,7 +56,10 @@ class Configuration(BaseObject):
 
 
 DEFAULT_CONFIGURATION_DATA = {
-    'plugins': [],
+    'plugins': [
+        'laz.plugins.jinja',
+        'laz.plugins.alias',
+    ],
     'laz': {
         'default_base_path': '',
         'default_target': 'default',

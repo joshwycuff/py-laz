@@ -164,6 +164,7 @@ class ShellAction(Action):
             **os.environ,
             **(self.context.data.get('env') or {}),
         }
+        log.debug(self.args())
         if self.run_data.get('capture'):
             type_str = self.run_data.get('type', 'str')
             result = subprocess.run(self.args(), env=env, capture_output=True).stdout.decode()
