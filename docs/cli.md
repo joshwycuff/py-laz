@@ -42,7 +42,12 @@ laz init
 Display tree structure of laz.yml files in current project
 
 ```shell
-laz tree [--show-targets]
+laz tree [--show-targets] [--show-paths]
+
+optional arguments:
+  -h, --help          show this help message and exit
+  --show-targets, -t  Show targets.
+  --show-paths, -p    Show paths.
 ```
 
 ### version

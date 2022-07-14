@@ -1,16 +1,10 @@
 # std
 from copy import deepcopy
-from typing import Optional as Opt
-
-# external
-from prodict import Prodict
 
 # internal
-from laz.utils.errors import LazTypeError
-from laz.utils.types import AtomicData, Data, DictData, ListData
+from laz.utils.types import AtomicData, Data, DictData
 from laz.plugins.plugin import Plugin
 from laz.utils.walk import Walk
-from laz.utils.prodict import prodictify
 
 
 class AliasPlugin(Plugin):

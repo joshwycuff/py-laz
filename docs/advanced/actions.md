@@ -38,8 +38,8 @@ actions:
 actions:
   example:
     condition: "[[ -z $USER ]]"
-    if: echo $USER
-    else: echo no user
+    if: echo no user
+    else: echo user
 ```
 
 ## Switch Action
@@ -54,4 +54,3 @@ actions:
     x: echo x
     y: echo y
 ```
-

@@ -127,3 +127,17 @@ targets:
 $ laz not-a-target echo '{{ target.name }}'
 [ERROR] Given path resolved to zero targets
 ```
+
+## plugins
+
+Specify the import path of Laz plugins to be included at runtime.
+
+```yaml
+plugins:
+  - laz.plugins.aws
+  - laz.plugins.terraform
+targets:
+  dev:
+```
+
+Note that plugin configuration is only allowed in the top-level laz.yml configuration file.

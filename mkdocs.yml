@@ -10,6 +10,7 @@ nav:
   - Plugins:
     - plugins/index.md
     - plugins/jinja.md
+    - plugins/alias.md
     - plugins/aws.md
     - plugins/terraform.md
   - cli.md

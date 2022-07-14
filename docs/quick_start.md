@@ -98,7 +98,6 @@ configuration context during the evaluation of Jinja variables.
 For example, if you want to print out an arbitrary configuration field:
 
 ```yaml
-# located in ~/projects/project-a
 abc: def
 ghi:
   jkl: mno
@@ -116,24 +115,21 @@ $ laz dev echo "{{ ghi.jkl }}"
 mno
 ```
 
-There are other special values added to the configuration dynamically such as the name of the
-configuration file (which is the same as the name of the folder) and the name of the
-current target.
+This is also a great way to keep your Laz
+configuration [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
-```shell
-$ laz dev echo "{{ config.name }}"
-project-a
+```yaml
+abc: "{{ x }}"
+def: "{{ x }}"
+target:
+  dev:
+x: annoyingly long repeated value
 ```
 
-```shell
-$ laz dev echo "{{ config.filepath }}"
-~/projects/project-a/laz.yml
-```
+See the [Jinja Plugin documentation](./plugins/jinja.md) for more details.
 
-```shell
-$ laz dev echo "{{ target.name }}"
-dev
-```
+In cases where you have entire repeated objects (as opposed to simple string values), you may want
+to instead check out the [Alias Plugin documentation](./plugins/alias.md).
 
 ## Hooks
 
@@ -167,3 +163,5 @@ prod
 after target
 after all
 ```
+
+[Plugins](./plugins/index.md) can also provide additional functionality.
