@@ -2,67 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://joshwycuff.github.io/py-laz/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/cli/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/quick_start/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/advanced/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/advanced/actions/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/advanced/concepts/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/advanced/configuration/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/advanced/project_structure/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/plugins/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/plugins/alias/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/plugins/aws/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/plugins/jinja/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://joshwycuff.github.io/py-laz/plugins/terraform/</loc>
-         <lastmod>2022-07-14</lastmod>
+         <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
