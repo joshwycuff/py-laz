@@ -11,9 +11,14 @@ from laz.utils.errors import LazTypeError
 from laz.utils.types import AtomicData, Data, DictData, ListData
 from laz.plugins.plugin import Plugin
 
+# custom jinja filters
+def jsonify2(x):
+    return json.dumps(json.dumps(x))
+
 # jinja environment
 env = Environment()
 env.filters['jsonify'] = json.dumps
+env.filters['jsonify2'] = jsonify2
 
 
 class JinjaPlugin(Plugin):

@@ -29,5 +29,6 @@ def _handle_atomic(data: AtomicData, context: DictData) -> Data:
         if data.startswith('='):
             for key, val in context.items():
                 locals()[key] = val
-            return _alias(eval(data[1:]), context)
+            result = _alias(eval(data[1:]), context)
+            return result
     return data
