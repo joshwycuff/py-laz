@@ -20,6 +20,10 @@ class Plugin:
         cls.after_target = log_method(cls.after_target)
         cls.after_all = log_method(cls.after_all)
 
+    @property
+    def env(self):
+        return self.context.data.get('env') or {}
+
     def before_all(self):
         raise NotImplementedError
 
@@ -32,7 +36,7 @@ class Plugin:
     def after_all(self):
         raise NotImplementedError
 
-    def env(self, **kwargs):
+    def push_env(self, **kwargs):
         self.context.push({'env': kwargs})
 
 

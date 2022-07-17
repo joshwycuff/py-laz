@@ -1,13 +1,18 @@
 # std
+from copy import deepcopy
 import json
 import os
 from typing import Dict, Union
 
+# external
+import boto3
+
 # internal
-from laz.utils.errors import LazValueError, LazError
+from laz.utils.errors import LazValueError, LazError, LazBoto3ClientError
 from laz.utils import log
 from laz.utils.types import Data
 from laz.utils.contexts import with_environ
+from laz.utils.funcs import compact_dict
 from laz.model.action import Action
 from laz.model.configuration import Configuration
 from laz.model.target import Target
@@ -15,17 +20,65 @@ from laz.plugins.plugin import Plugin
 
 
 class AwsPlugin(Plugin):
+    _secret_string_cache: Dict[str, str] = {}
+
+    @property
+    def config(self):
+        return self.context.data.get('aws') or {}
 
     def before_all(self):
         env = {}
-        aws_profile = self.context.data.get('aws', {}).get('profile')
+        aws_profile = self.config.get('profile')
         if aws_profile is not None:
             env['AWS_PROFILE'] = aws_profile
-        aws_region = self.context.data.get('aws', {}).get('region')
+        aws_region = self.config.get('region')
         if aws_region is not None:
             env['AWS_DEFAULT_REGION'] = aws_region
         if env:
-            self.env(**env)
+            self.push_env(**env)
+
+    def before_target(self):
+        self._handle_secrets()
+
+    def _handle_secrets(self):
+        env = {}
+        for key, val in self.env.items():
+            if isinstance(val, dict) and len(val.keys()) == 1 and 'aws' in val and isinstance(val['aws'], dict):
+                secret_config = val['aws']
+                env[key] = self._get_secret_value(secret_config)
+        if env:
+            data = deepcopy(self.context.data)
+            for key, val in env.items():
+                data['env'][key] = val
+            self.context.replace(data)
+
+    def _get_secret_value(self, secret_config: dict) -> str:
+        profile_name = secret_config.get('profile_name') or self.env.get('AWS_PROFILE')
+        region_name = secret_config.get('region_name') or self.env.get('AWS_DEFAULT_REGION')
+        secret_id = secret_config.get('secret_id')
+        version_id = secret_config.get('version_id')
+        version_stage = secret_config.get('version_stage')
+        json_key = secret_config.get('json_key')
+        cache_id = '|'.join(map(str, (profile_name, region_name, secret_id, version_id, version_stage)))
+        if cache_id in self._secret_string_cache:
+            log.debug(f'Getting cached AWS secret: {cache_id}')
+            secret_string = self._secret_string_cache[cache_id]
+        else:
+            log.debug(f'Getting AWS secret: {secret_config}')
+            session = boto3.Session(profile_name=profile_name, region_name=region_name)
+            client = session.client('secretsmanager')
+            response = client.get_secret_value(**compact_dict(dict(
+                SecretId=secret_id,
+                VersionId=version_id,
+                VersionStage=version_stage,
+            )))
+            LazBoto3ClientError.raise_if_bad_status(response)
+            secret_string = response['SecretString']
+            self._secret_string_cache[cache_id] = secret_string
+        if json_key:
+            return json.loads(secret_string)[json_key]
+        else:
+            return secret_string
 
 
 class AwsAction(Action):

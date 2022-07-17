@@ -8,6 +8,19 @@ aws:
   region: <region name>
 ```
 
+## AWS Secret Environment Variable
+
+```yaml
+env:
+  aws:
+    profile_name: <profile_name> # optional
+    region_name: <region_name> # optional
+    secret_id: <secret_id>
+    version_id: <version_id> # optional
+    version_stage: <version_stage> # optional
+    json_key: <json_key> # optional
+```
+
 ## Assume Role
 
 ```yaml

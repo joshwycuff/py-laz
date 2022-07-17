@@ -10,3 +10,7 @@ def flatten(to_flatten) -> list:
 
 def compact(l: list) -> list:
     return [item for item in l if item is not None]
+
+
+def compact_dict(d: dict) -> dict:
+    return {key: val for key, val in d.items() if val is not None}
