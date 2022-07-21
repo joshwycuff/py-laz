@@ -59,6 +59,7 @@ DEFAULT_CONFIGURATION_DATA = {
     'plugins': [
         'laz.plugins.alias',
         'laz.plugins.jinja',
+        'laz.plugins.groups',
     ],
     'laz': {
         'default_base_path': '',

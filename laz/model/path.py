@@ -20,6 +20,10 @@ class Path:
     def base(self) -> str:
         return self.value.split(self.path_delimiter)[0] or self.default_base_path
 
+    @base.setter
+    def base(self, new_base: str):
+        self.value = self.value.replace(self.base, new_base)
+
     @property
     def target(self) -> str:
         return self.value.split(self.path_delimiter)[-1] or self.default_target

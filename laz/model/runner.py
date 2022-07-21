@@ -22,15 +22,17 @@ class Runner:
         config = self.root_node.configuration.data.get('laz') or {}
         self.error_on_no_targets = config['error_on_no_targets']
         self.cli_args = cli_args
-        self.path = Path(args[0], **root_node.configuration.data['laz'])
-        self.args = args[1:]
         self.root_node.configuration.push({
             'path': args[0],
             'args': args[1:],
         })
 
     def resolve(self) -> List[Target]:
-        resolver = Resolver(self.root_node, self.path)
+        path = Path(
+            self.root_node.configuration.data['path'],
+            **self.root_node.configuration.data['laz'],
+        )
+        resolver = Resolver(self.root_node, path)
         targets = resolver.resolve()
         if self.cli_args.reverse:
             targets.reverse()

@@ -2,8 +2,10 @@
 from fnmatch import fnmatch
 from typing import List
 
+# external
+from braceexpand import braceexpand
+
 # internal
-from laz.model.configuration import Configuration
 from laz.model.path import Path
 from laz.model.target import Target
 from laz.model.tree import Node
@@ -21,10 +23,11 @@ class Resolver:
         return self.resolve_targets(nodes)
 
     def resolve_nodes(self) -> List[Node]:
+        patterns = list(braceexpand(self.path.base_pattern))
         nodes: List[Node] = []
         for node in self.node.nodes():
             name_path = self.get_name_path(node)
-            if fnmatch(name_path, self.path.base_pattern):
+            if any(fnmatch(name_path, p) for p in patterns):
                 nodes.append(node)
         return nodes
 
